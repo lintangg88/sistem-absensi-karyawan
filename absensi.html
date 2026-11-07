@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Absensi</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(
+        135deg,
+        #d82323,
+        #8b0000
+    );
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    /*
+    Navbar fixed-top
+    */
+    padding-top: 70px;
+}
+
+
+/* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar{
+            background:#b30000;
+        }
+
+
+        .custom-navbar{
+            background:#b30000;
+            padding:10px 0;
+        }
+
+
+        .navbar-brand{
+            font-size:15px;
+            font-weight:600;
+        }
+
+
+        .navbar-brand img{
+            object-fit:contain;
+        }
+
+
+        .navbar-nav .nav-link{
+            color:white !important;
+            font-size:14px;
+            margin:0 8px;
+            transition:.3s;
+        }
+
+
+        .navbar-nav .nav-link:hover{
+            color:#ffd54f !important;
+        }
+
+
+        .dropdown-menu{
+            border:none;
+            border-radius:10px;
+            box-shadow:0 5px 20px rgba(0,0,0,.15);
+        }
+
+
+        .dropdown-item{
+            font-size:14px;
+            padding:10px 15px;
+        }
+
+
+        .dropdown-item:hover{
+            background:#b30000;
+            color:white;
+        }
+
+
+        .profile-icon{
+            color:white;
+            font-size:14px;
+            text-decoration:none;
+        }
+
+
+        .profile-icon:hover{
+            color:#ffd54f;
+        }
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    width: 100%;
+
+    min-height: 410px;
+
+    background: #eda515;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 35px 20px;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.hero-content {
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 35px;
+}
+
+
+/* =====================================================
+   HERO TEXT
+===================================================== */
+
+.hero-text {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.hero-text h1 {
+    color: #ffffff;
+
+    font-size: clamp(
+        2.8rem,
+        5vw,
+        4.2rem
+    );
+
+    font-weight: 900;
+
+    font-family: 'Luckiest Guy', cursive;
+
+    line-height: 1.05;
+
+    text-align: center;
+
+    margin: 0;
+
+    text-shadow:
+        4px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+
+/* =====================================================
+   HERO IMAGE
+===================================================== */
+
+.hero-image {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.hero-image img {
+    display: block;
+
+    width: 100%;
+
+    max-width: 280px;
+
+    height: auto;
+
+    object-fit: contain;
+
+    margin: 0 auto;
+
+    transform: none;
+}
+
+
+/* =====================================================
+   CARD / CONTENT
+===================================================== */
+
+.content {
+    width: 100%;
+
+    padding: 50px 5% 60px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 30px;
+}
+
+.card {
+    background: #ffffff;
+
+    overflow: hidden;
+
+    border: none;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    text-align: center;
+
+    padding: 15px;
+
+    border-bottom: 1px solid #dddddd;
+
+    font-size: 18px;
+
+    font-weight: 500;
+}
+
+.card-body {
+    text-align: center;
+
+    padding: 25px;
+}
+
+.card-body p {
+    margin-bottom: 10px;
+}
+
+.card-body h3 {
+    margin-bottom: 20px;
+
+    font-size: 28px;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn-masuk,
+.btn-pulang {
+    background: #f0c04e;
+
+    border: none;
+
+    padding: 10px 30px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.btn-masuk a,
+.btn-pulang a {
+    color: #000000;
+
+    text-decoration: none;
+}
+
+.btn-masuk:hover,
+.btn-pulang:hover {
+    background: #dcae35;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-masuk:active,
+.btn-pulang:active {
+    transform: scale(0.96);
+}
+
+/* ================= FOOTER ================= */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #5c3b00;
+            font-size: 12px;
+            background: #F9B818;
+            border-top: 1px solid #f0c33c;
+        }
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 991.98px) {
+
+    .hero {
+        min-height: 440px;
+
+        padding: 40px 25px;
+    }
+
+    .hero-content {
+        gap: 25px;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(
+            2.6rem,
+            6vw,
+            3.6rem
+        );
+    }
+
+    .hero-image img {
+        max-width: 260px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .hero {
+        min-height: 470px;
+
+        padding: 35px 15px 40px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+
+        gap: 12px;
+
+        max-width: 550px;
+    }
+
+    .hero-text {
+        width: 100%;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(
+            2.1rem,
+            9vw,
+            2.9rem
+        );
+
+        line-height: 1.04;
+
+        text-align: center;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-image img {
+        width: 72%;
+
+        max-width: 245px;
+
+        height: auto;
+    }
+
+    /* CARD MOBILE */
+
+    .content {
+        padding: 40px 20px 55px;
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+}
+
+
+/* =====================================================
+   HP KECIL
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .hero {
+        min-height: 430px;
+
+        padding: 30px 12px 35px;
+    }
+
+    .hero-content {
+        gap: 8px;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+
+        line-height: 1.04;
+    }
+
+    .hero-image img {
+        width: 70%;
+
+        max-width: 220px;
+    }
+
+    .card-body h3 {
+        font-size: 22px;
+    }
+}
+
+
+/* =====================================================
+   HP SANGAT KECIL
+===================================================== */
+
+@media (max-width: 350px) {
+
+    .hero {
+        min-height: 410px;
+
+        padding: 25px 10px 30px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-image img {
+        max-width: 200px;
+    }
+}
+
+/* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width:991px){
+
+            .navbar-collapse{
+
+                background:#b30000;
+
+                padding:15px;
+
+                margin-top:10px;
+
+                border-radius:10px;
+            }
+
+
+            .navbar-nav{
+
+                text-align:center;
+            }
+
+
+            .profile-icon{
+
+                display:flex;
+
+                justify-content:center;
+
+                margin-top:10px;
+            }
+
+        }
+
+
+        @media(max-width:768px){
+
+            .rekap-section{
+
+                padding-top:110px;
+
+                padding-bottom:50px;
+            }
+
+
+            .header-rekap{
+
+                flex-direction:column;
+
+                align-items:flex-start;
+            }
+
+
+            .judul{
+
+                font-size:30px;
+            }
+
+
+            .btn-export{
+
+                width:100%;
+            }
+
+
+            .table-wrapper{
+
+                border-radius:15px;
+            }
+
+
+            .custom-table thead th{
+
+                font-size:12px;
+
+                padding:12px 8px;
+            }
+
+
+            .custom-table tbody td{
+
+                font-size:12px;
+
+                padding:12px 8px;
+            }
+
+        }
+
+
+        @media(max-width:576px){
+
+            .judul{
+
+                font-size:27px;
+            }
+
+
+            .tanggal{
+
+                height:55px;
+            }
+
+
+            .btn-tampil{
+
+                height:55px;
+            }
+
+
+            .btn-export{
+
+                height:55px;
+            }
+
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
+
+        <div class="container">
+
+
+            <a
+                class="navbar-brand d-flex align-items-center"
+                href="#"
+            >
+
+                <img
+                    src="foto/logo.png"
+                    alt="Logo"
+                    width="35"
+                    class="me-2"
+                >
+
+                <span>HokyaAttend</span>
+
+            </a>
+
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+            >
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <div
+                class="collapse navbar-collapse"
+                id="navbarNav"
+            >
+
+
+                <ul class="navbar-nav mx-auto">
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="dashboard.html"
+                        >
+                            Dashboard
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+                        
+                        <a
+                            class="nav-link"
+                            href="absensi.html">
+                            Presensi
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link active"
+                            href="riwayat_absensi.html"
+                        >
+                            Riwayat Presensi
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="jadwal_kerja.html"
+                        >
+                            Jadwal Kerja
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="pegajuan_izin.html">
+                            Pengajuan Izin
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+
+                <a href="#" onclick="logout(); return false;" style="color: white; text-decoration: none;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-text">
+                <h1>
+                    JANGAN LUPA <br>
+                    WAJIB <br>
+                    PRESENSI GUYS !
+                </h1>
+            </div>
+
+            <div class="hero-image">
+                <img src="foto/elemen absensi 1.png" alt="Maskot Absensi">
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Content -->
+    <section class="content">
+
+        <div class="card">
+    <div class="card-header">
+        Presensi Masuk
+    </div>
+
+    <div class="card-body">
+        <p id="tanggalMasuk"></p>
+        <h3 id="jamMasuk"></h3>
+
+        <button class="btn-masuk">
+            <a href="absensi_masuk.html">
+                Masuk
+            </a>
+        </button>
+    </div>
+</div>
+
+    <div class="card">
+        <div class="card-header">
+            Presensi Pulang
+        </div>
+
+        <div class="card-body">
+            <p id="tanggalPulang"></p>
+            <h3 id="jamPulang"></h3>
+
+            <button class="btn-pulang">
+                <a href="absensi_keluar.html">
+                    Pulang
+                </a>
+            </button>
+        </div>
+    </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        Copyright &copy; HokyaAttend 2026
+    </footer>
+
+    <script>
+
+        /*
+        |--------------------------------------------------------------------------
+        | KONFIGURASI API
+        |--------------------------------------------------------------------------
+        */
+
+        const API_ABSENSI =
+            "http://localhost/absensi_backand/api";
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | VARIABEL TIMER
+        |--------------------------------------------------------------------------
+        */
+
+        let timerAbsensi = null;
+
+        let timerBerjalan = true;
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | AMBIL ID USER
+        |--------------------------------------------------------------------------
+        */
+
+        function ambilIdUser() {
+
+            let idUser = null;
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | CEK localStorage "user"
+            |--------------------------------------------------------------------------
+            */
+
+            try {
+
+                const userStorage =
+                    localStorage.getItem("user");
+
+
+                if (userStorage) {
+
+                    const user =
+                        JSON.parse(userStorage);
+
+
+                    if (user.id_user) {
+
+                        idUser =
+                            parseInt(user.id_user);
+
+                    }
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Gagal membaca user:",
+                    error
+                );
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | FALLBACK id_user
+            |--------------------------------------------------------------------------
+            */
+
+            if (!idUser) {
+
+                const idUserStorage =
+                    localStorage.getItem("id_user");
+
+
+                if (idUserStorage) {
+
+                    idUser =
+                        parseInt(idUserStorage);
+
+                }
+
+            }
+
+
+            return idUser;
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | UPDATE TANGGAL DAN JAM
+        |--------------------------------------------------------------------------
+        */
+
+        function updateTanggalJam() {
+
+            /*
+            |--------------------------------------------------------------------------
+            | JIKA TIMER SUDAH DIHENTIKAN
+            |--------------------------------------------------------------------------
+            */
+
+            if (!timerBerjalan) {
+
+                return;
+
+            }
+
+
+            const sekarang =
+                new Date();
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | TANGGAL
+            |--------------------------------------------------------------------------
+            */
+
+            const opsiTanggal = {
+
+                day: "numeric",
+
+                month: "long",
+
+                year: "numeric"
+
+            };
+
+
+            const tanggal =
+                sekarang.toLocaleDateString(
+                    "id-ID",
+                    opsiTanggal
+                );
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | JAM
+            |--------------------------------------------------------------------------
+            */
+
+            const jam =
+                String(
+                    sekarang.getHours()
+                ).padStart(2, "0")
+                +
+                " : "
+                +
+                String(
+                    sekarang.getMinutes()
+                ).padStart(2, "0")
+                +
+                " : "
+                +
+                String(
+                    sekarang.getSeconds()
+                ).padStart(2, "0");
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | TAMPILKAN
+            |--------------------------------------------------------------------------
+            */
+
+            const tanggalMasuk =
+                document.getElementById(
+                    "tanggalMasuk"
+                );
+
+
+            const jamMasuk =
+                document.getElementById(
+                    "jamMasuk"
+                );
+
+
+            const tanggalPulang =
+                document.getElementById(
+                    "tanggalPulang"
+                );
+
+
+            const jamPulang =
+                document.getElementById(
+                    "jamPulang"
+                );
+
+
+            if (tanggalMasuk) {
+
+                tanggalMasuk.innerHTML =
+                    tanggal;
+
+            }
+
+
+            if (jamMasuk) {
+
+                jamMasuk.innerHTML =
+                    jam;
+
+            }
+
+
+            if (tanggalPulang) {
+
+                tanggalPulang.innerHTML =
+                    tanggal;
+
+            }
+
+
+            if (jamPulang) {
+
+                jamPulang.innerHTML =
+                    jam;
+
+            }
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | MULAI TIMER
+        |--------------------------------------------------------------------------
+        */
+
+        function mulaiTimer() {
+
+            timerBerjalan =
+                true;
+
+
+            updateTanggalJam();
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | HAPUS TIMER LAMA
+            |--------------------------------------------------------------------------
+            */
+
+            if (timerAbsensi) {
+
+                clearInterval(
+                    timerAbsensi
+                );
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | TIMER SETIAP 1 DETIK
+            |--------------------------------------------------------------------------
+            */
+
+            timerAbsensi =
+                setInterval(
+                    updateTanggalJam,
+                    1000
+                );
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | HENTIKAN TIMER
+        |--------------------------------------------------------------------------
+        */
+
+        function hentikanTimer() {
+
+            console.log(
+                "TIMER ABSENSI DIHENTIKAN"
+            );
+
+
+            timerBerjalan =
+                false;
+
+
+            if (timerAbsensi) {
+
+                clearInterval(
+                    timerAbsensi
+                );
+
+                timerAbsensi =
+                    null;
+
+            }
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | UBAH TOMBOL MENJADI SUDAH ABSEN
+        |--------------------------------------------------------------------------
+        */
+
+        function ubahTombolSudahAbsen(
+            jamMasuk
+        ) {
+
+            const tombolMasuk =
+                document.querySelector(
+                    ".btn-masuk"
+                );
+
+
+            if (!tombolMasuk) {
+
+                return;
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | MATIKAN TOMBOL
+            |--------------------------------------------------------------------------
+            */
+
+            tombolMasuk.disabled =
+                true;
+
+
+            tombolMasuk.style.background =
+                "#bdbdbd";
+
+
+            tombolMasuk.style.cursor =
+                "not-allowed";
+
+
+            tombolMasuk.style.opacity =
+                "0.7";
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | HILANGKAN LINK
+            |--------------------------------------------------------------------------
+            */
+
+            const link =
+                tombolMasuk.querySelector(
+                    "a"
+                );
+
+
+            if (link) {
+
+                link.removeAttribute(
+                    "href"
+                );
+
+
+                link.style.color =
+                    "#555";
+
+
+                link.style.cursor =
+                    "not-allowed";
+
+
+                link.style.pointerEvents =
+                    "none";
+
+
+                link.innerHTML =
+                    "Sudah Absen Hari Ini";
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | JIKA ADA JAM MASUK
+            |--------------------------------------------------------------------------
+            */
+
+            if (jamMasuk) {
+
+                const jamElement =
+                    document.getElementById(
+                        "jamMasuk"
+                    );
+
+
+                if (jamElement) {
+
+                    jamElement.innerHTML =
+                        jamMasuk;
+
+                }
+
+            }
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | CEK ABSENSI HARI INI
+        |--------------------------------------------------------------------------
+        */
+
+        async function cekAbsensiHariIni() {
+
+            const idUser =
+                ambilIdUser();
+
+
+            console.log(
+                "ID USER:",
+                idUser
+            );
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | ID USER TIDAK ADA
+            |--------------------------------------------------------------------------
+            */
+
+            if (
+                !idUser ||
+                isNaN(idUser)
+            ) {
+
+                console.warn(
+                    "ID user tidak ditemukan."
+                );
+
+                mulaiTimer();
+
+                return;
+
+            }
+
+
+            try {
+
+                console.log(
+                    "Mengecek absensi hari ini..."
+                );
+
+
+                const response =
+                    await fetch(
+                        `${API_ABSENSI}/auth/absensi/cek_absensi_hari_ini.php`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    id_user:
+                                        idUser
+                                })
+                        }
+                    );
+
+
+                console.log(
+                    "STATUS CEK ABSENSI:",
+                    response.status
+                );
+
+
+                const text =
+                    await response.text();
+
+
+                console.log(
+                    "RESPONSE CEK ABSENSI:",
+                    text
+                );
+
+
+                let result;
+
+
+                try {
+
+                    result =
+                        JSON.parse(text);
+
+                } catch (error) {
+
+                    console.error(
+                        "Response bukan JSON:",
+                        text
+                    );
+
+
+                    mulaiTimer();
+
+                    return;
+
+                }
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | SUDAH ABSEN
+                |--------------------------------------------------------------------------
+                */
+
+                if (
+                    result.success &&
+                    result.data &&
+                    result.data.sudah_absen === true
+                ) {
+
+                    console.log(
+                        "USER SUDAH ABSEN HARI INI"
+                    );
+
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | STOP TIMER
+                    |--------------------------------------------------------------------------
+                    */
+
+                    hentikanTimer();
+
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | UBAH TOMBOL
+                    |--------------------------------------------------------------------------
+                    */
+
+                    ubahTombolSudahAbsen(
+                        result.data.jam_masuk
+                    );
+
+
+                    return;
+
+                }
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | BELUM ABSEN
+                |--------------------------------------------------------------------------
+                */
+
+                console.log(
+                    "USER BELUM ABSEN HARI INI"
+                );
+
+
+                mulaiTimer();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Gagal mengecek absensi:",
+                    error
+                );
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | JIKA BACKEND GAGAL
+                | TIMER TETAP BERJALAN
+                |--------------------------------------------------------------------------
+                */
+
+                mulaiTimer();
+
+            }
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | SAAT HALAMAN SELESAI DIMUAT
+        |--------------------------------------------------------------------------
+        */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                console.log(
+                    "DASHBOARD ABSENSI SIAP"
+                );
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | TIMER DIJALANKAN SEMENTARA
+                |--------------------------------------------------------------------------
+                */
+
+                mulaiTimer();
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | CEK DATABASE
+                |--------------------------------------------------------------------------
+                */
+
+                cekAbsensiHariIni();
+
+            }
+        );
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | CEK KETIKA TAB KEMBALI AKTIF
+        |--------------------------------------------------------------------------
+        */
+
+        document.addEventListener(
+            "visibilitychange",
+            function () {
+
+                if (
+                    document.visibilityState ===
+                    "visible"
+                ) {
+
+                    console.log(
+                        "HALAMAN KEMBALI AKTIF"
+                    );
+
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | CEK ULANG DATABASE
+                    |--------------------------------------------------------------------------
+                    */
+
+                    cekAbsensiHariIni();
+
+                }
+
+            }
+        );
+
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="js/logout.js"></script>
+</body>
+</html>

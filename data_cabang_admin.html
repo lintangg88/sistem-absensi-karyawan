@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Data Cabang - Admin Dimsum Hokya</title>
+
+    <!-- FONT AWESOME -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+    <!-- BOOTSTRAP 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- TABLER ICON -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+
+    <!-- FONT NUNITO -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900" rel="stylesheet">
+
+    <!-- SB ADMIN 2 -->
+    <link href="css admin/sb-admin-2.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Nunito", sans-serif;
+        }
+
+        .custom-sidebar {
+            border-right: 2px solid white;
+            background: linear-gradient(135deg, #8f0000, #d70000);
+        }
+
+        .topbar-custom {
+            background: linear-gradient(135deg, #9F0000, #8f0000);
+        }
+
+        .topbar-divider-custom {
+            width: 1px;
+            height: 30px;
+            background-color: rgba(255,255,255,.5);
+            margin: 0 15px;
+        }
+
+        #sidebarToggleTop {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,.25) !important;
+            background-color: rgba(255,255,255,.12) !important;
+            color: white !important;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: none !important;
+        }
+
+        #sidebarToggleTop:hover,
+        #sidebarToggleTop:focus,
+        #sidebarToggleTop:active {
+            background-color: rgba(255,255,255,.2) !important;
+            color: white !important;
+            box-shadow: none !important;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+        }
+
+        .card-header {
+            background: #fff;
+            border-bottom: 1px solid #e3e6f0;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #tableKaryawan {
+            width: 100%;
+            min-width: 1000px;
+            vertical-align: middle;
+        }
+
+        #tableKaryawan th {
+            white-space: nowrap;
+            background: #f8f9fa;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        #tableKaryawan td {
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        #tableKaryawan td:nth-child(3) {
+            min-width: 200px;
+            white-space: normal;
+        }
+
+        #tableKaryawan td:last-child {
+            white-space: nowrap;
+            min-width: 150px;
+        }
+
+        #tableKaryawan .btn {
+            border-radius: 5px;
+        }
+
+        .btn-edit {
+            background: #FFB200;
+            color: white;
+            border: none;
+        }
+
+        .btn-edit:hover {
+            background: #e5a000;
+            color: white;
+        }
+
+        .btn-delete {
+            background: #CB0404;
+            color: white;
+            border: none;
+        }
+
+        .btn-delete:hover {
+            background: #a90000;
+            color: white;
+        }
+
+        .modal-header-custom {
+            background: linear-gradient(135deg, #8f0000, #d70000);
+            color: white;
+        }
+
+        .modal-header-custom .modal-title {
+            font-weight: 700;
+        }
+
+        .modal-content {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .modal-body {
+            background: white;
+        }
+
+        .modal-footer {
+            background: #f8f9fa;
+        }
+
+        #formEditKaryawan .form-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        #formEditKaryawan .form-control:focus,
+        #formEditKaryawan .form-select:focus {
+            border-color: #8f0000;
+            box-shadow: 0 0 0 .2rem rgba(143,0,0,.15);
+        }
+
+        .badge {
+            padding: 7px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+
+        #alertKaryawan,
+        #editKaryawanAlert {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            #sidebarToggleTop {
+                display: flex;
+            }
+
+            .container-fluid {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .card-body {
+                padding: 15px;
+            }
+
+            #tableKaryawan {
+                min-width: 1000px;
+            }
+
+            .modal-dialog {
+                margin: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #sidebarToggleTop {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .page-title {
+                font-size: 1.25rem;
+            }
+
+            .modal-dialog {
+                margin: 5px;
+            }
+
+            .modal-body {
+                padding: 15px;
+            }
+        }
+
+        /* =====================================================
+        FIX SCROLL SIDEBAR (UKURAN UTUH & TETAP RESPANSIF)
+        ====================================================== */
+
+        .custom-sidebar {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            flex-shrink: 0 !important; /* Menjaga agar proporsi & isi sidebar tidak tertekan/gepeng */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Menjaga lebar sidebar tetap utuh di layar mobile */
+        @media (max-width: 768px) {
+            .custom-sidebar {
+                width: 7rem !important; /* Menjaga lebar tetap sama seperti versi asli/desktop */
+            }
+        }
+
+        /* Scrollbar tipis transparan agar tampilan rapi */
+        .custom-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+
+<div id="wrapper">
+
+    <!-- SIDEBAR -->
+    <ul class="navbar-nav sidebar sidebar-dark accordion custom-sidebar" id="accordionSidebar">
+
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <div class="sidebar-brand-icon">
+                <img src="foto/logo.png" alt="Logo Dimsum Hokya"
+                     style="width:70px;height:70px;margin-top:20px;object-fit:contain;">
+            </div>
+        </a>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item">
+            <a class="nav-link" href="dashboard_admin.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <div class="sidebar-heading">Data Master</div>
+
+        <li class="nav-item">
+            <a class="nav-link" href="data_absensi_admin.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data Presensi</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="tambah_target_kerja_admin.html">
+                <i class="fas fa-fw fa-calendar-plus"></i>
+                <span>Tambah Target Kerja</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="data_target_kerja_admin.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data Target Kerja</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a
+                class="nav-link"
+                href="tambah_data_cabang.html">
+                <i class="fas fa-fw fa-calendar-plus"></i>
+                <span>Tambah Data Cabang</span>
+            </a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="data_cabang_admin.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data Cabang</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="tambah_jadwal_kerja_admin.html">
+                <i class="fas fa-fw fa-calendar-plus"></i>
+                <span>Tambah Jadwal Kerja</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="data_jadwal_kerja_admin.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data Jadwal Kerja</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="data_izin_masuk.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data Izin Tidak Masuk</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="tambah_data_karyawan_admin.html">
+                <i class="fas fa-fw fa-calendar-plus"></i>
+                <span>Tambah Data Karyawan</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="data_karyawan_admin.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data Karyawan</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="tambah_akun_karyawan_admin.html">
+                <i class="fas fa-fw fa-calendar-plus"></i>
+                <span>Tambah Akun Karyawan</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="data_akun_karyawan_admin.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data Akun Karyawan</span>
+            </a>
+        </li>
+
+        <hr class="sidebar-divider d-none d-md-block">
+    </ul>
+
+    <!-- CONTENT -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+
+            <!-- TOPBAR -->
+            <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow topbar-custom">
+
+                <button id="sidebarToggleTop" class="btn" type="button"
+                        aria-label="Buka menu navigasi">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown"
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                            <span id="namaAdmin"
+                                  class="me-2 d-none d-lg-inline text-white small">
+                                Admin
+                            </span>
+
+                            <div class="topbar-divider-custom d-none d-sm-block"></div>
+
+                            <img class="img-profile rounded-circle"
+                                 src="img/undraw_profile.svg"
+                                 alt="Profil Admin"
+                                 style="width:40px;height:40px;">
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end shadow">
+                            <a class="dropdown-item" href="#" id="btnLogout">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- HALAMAN DATA CABANG -->
+            <div class="container-fluid">
+
+                <h1 class="h3 mb-4 text-gray-800 page-title">Data Cabang</h1>
+
+                <div class="card shadow mb-4">
+
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold" style="color:#000;">
+                            <i class="fas fa-store me-2"></i>
+                            Data Cabang Hokya
+                        </h6>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div id="alertKaryawan"
+                             class="alert d-none"
+                             role="alert"></div>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover"
+                                   id="tableKaryawan" width="100%">
+
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Cabang</th>
+                                        <th>Alamat</th>
+                                        <th>Latitude</th>
+                                        <th>Longitude</th>
+                                        <th>Radius Meter</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+
+                                <!-- ID DISESUAIKAN DENGAN JAVASCRIPT -->
+                                <tbody id="tableKaryawanBody">
+                                    <tr>
+                                        <td colspan="8" class="text-center py-4">
+                                            <span class="spinner-border spinner-border-sm text-danger me-2"
+                                                  role="status"></span>
+                                            Memuat data cabang Hokya...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Dimsum Hokya 2026</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- SCROLL TO TOP -->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- MODAL EDIT CABANG -->
+<div class="modal fade" id="modalEditKaryawan" tabindex="-1"
+     aria-labelledby="modalEditKaryawanLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header modal-header-custom">
+                <h5 class="modal-title" id="modalEditKaryawanLabel">
+                    <i class="fas fa-store me-2"></i>
+                    Edit Data Cabang
+                </h5>
+
+                <button type="button" class="btn-close btn-close-white"
+                        data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+
+            <form id="formEditKaryawan">
+                <div class="modal-body">
+
+                    <input type="hidden" id="edit_id_cabang">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <label for="edit_nama_cabang" class="form-label">
+                                Nama Cabang
+                            </label>
+                            <input type="text" class="form-control"
+                                   id="edit_nama_cabang" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="edit_alamat" class="form-label">
+                                Alamat
+                            </label>
+                            <input type="text" class="form-control"
+                                   id="edit_alamat" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="edit_latitude" class="form-label">
+                                Latitude
+                            </label>
+                            <input type="number" class="form-control"
+                                   id="edit_latitude" step="any"
+                                   min="-90" max="90" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="edit_longitude" class="form-label">
+                                Longitude
+                            </label>
+                            <input type="number" class="form-control"
+                                   id="edit_longitude" step="any"
+                                   min="-180" max="180" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="edit_radius_meter" class="form-label">
+                                Radius Meter
+                            </label>
+                            <input type="number" class="form-control"
+                                   id="edit_radius_meter"
+                                   min="1" max="100000" step="1" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="edit_status" class="form-label">
+                                Status Cabang
+                            </label>
+                            <select class="form-select" id="edit_status" required>
+                                <option value="aktif">Aktif</option>
+                                <option value="nonaktif">Nonaktif</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div id="editKaryawanAlert"
+                         class="alert d-none"
+                         role="alert"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i>
+                        Batal
+                    </button>
+
+                    <button type="submit" class="btn"
+                            id="btnSimpanKaryawan"
+                            style="background:#FFB200;color:white;">
+                        <i class="fas fa-save me-1"></i>
+                        Simpan Perubahan
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="js/sb-admin-2.min.js"></script>
+
+<!-- FILE JAVASCRIPT DATA CABANG -->
+<script src="js/data_cabang_admin.js"></script>
+
+<!-- NAMA ADMIN -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const namaAdmin = document.getElementById("namaAdmin");
+    const userData = localStorage.getItem("user");
+
+    if (!namaAdmin) return;
+
+    if (!userData) {
+        namaAdmin.textContent = "Admin";
+        return;
+    }
+
+    try {
+        const user = JSON.parse(userData);
+        namaAdmin.textContent =
+            user.nama_lengkap || user.nama || user.username || "Admin";
+    } catch (error) {
+        console.error("Gagal membaca data user:", error);
+        namaAdmin.textContent = "Admin";
+    }
+});
+</script>
+
+<!-- LOGOUT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const btnLogout = document.getElementById("btnLogout");
+
+    if (!btnLogout) return;
+
+    btnLogout.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        if (!confirm("Apakah kamu yakin ingin logout?")) return;
+
+        localStorage.removeItem("user");
+        localStorage.removeItem("id_user");
+        localStorage.removeItem("id_karyawan");
+        localStorage.removeItem("role");
+        localStorage.removeItem("nama_lengkap");
+        localStorage.removeItem("username");
+
+        sessionStorage.clear();
+        window.location.replace("login.html");
+    });
+});
+</script>
+
+<!-- CEK LOGIN DAN ROLE -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const userData = localStorage.getItem("user");
+
+    if (!userData) {
+        window.location.replace("login.html");
+        return;
+    }
+
+    try {
+        const user = JSON.parse(userData);
+
+        if (user.role && String(user.role).toLowerCase() !== "admin") {
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("login.html");
+        }
+    } catch (error) {
+        console.error("Data login tidak valid:", error);
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.replace("login.html");
+    }
+});
+</script>
+
+<!-- code untuk koneksi jikalau di deploy -->
+    
+<script src="js/api-config.js"></script>
+
+</body>
+</html>

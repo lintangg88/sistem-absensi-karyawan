@@ -1,0 +1,588 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Presensi Masuk</title>
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #d82323, #8b0000);
+            min-height: 100vh;
+        }
+
+        /* ================= NAVBAR ================= */
+        .navbar {
+            background: #b30000;
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: white !important;
+            font-size: 15px;
+        }
+
+        .navbar-brand img {
+            object-fit: contain;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 14px;
+            margin: 0 8px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffd54f !important;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .logout:hover {
+            color: #ffd54f;
+        }
+
+        .navbar-toggler {
+            border: 3px solid rgba(255, 255, 255, 0.45);
+            border-radius: 12px;
+            padding: 8px 12px;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* ================= TABLET DAN HP ================= */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                padding: 12px 0 5px;
+            }
+
+            .navbar-nav {
+                width: 100%;
+                align-items: center;
+                margin: 0 auto 10px !important;
+            }
+
+            .navbar-nav .nav-item {
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar-nav .nav-link {
+                display: block;
+                width: 100%;
+                padding: 8px 0;
+                margin: 0;
+                font-size: 14px;
+            }
+
+            .navbar-collapse .logout {
+                display: block;
+                width: fit-content;
+                margin-left: 15px;
+                margin-right: auto;
+                padding: 5px 0;
+                font-size: 14px;
+            }
+        }
+
+        
+        /* ================= HP ================= */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 0;
+            }
+
+            .navbar-brand {
+                font-size: 17px;
+            }
+
+            .navbar-brand img {
+                width: 32px;
+            }
+
+            .navbar-toggler {
+                padding: 6px 10px;
+                border-width: 2px;
+            }
+        }
+
+        /* ================= HP LAYAR KECIL ================= */
+        @media (max-width: 400px) {
+            .navbar-brand {
+                font-size: 15px;
+            }
+
+            .navbar-brand img {
+                width: 29px;
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 13px;
+                padding: 7px 0;
+            }
+
+            .navbar-collapse .logout {
+                font-size: 13px;
+            }
+        }
+
+        /* ================= SECTION ================= */
+
+        .presensi-section {
+            min-height: 100vh;
+            padding-top: 100px;
+            padding-bottom: 40px;
+
+            background: linear-gradient(
+                135deg,
+                #e53935,
+                #a80000
+            );
+        }
+
+        /* ================= CARD ================= */
+
+        .card-presensi {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .15);
+        }
+
+        /* ================= MAP ================= */
+
+        #map {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* ================= INFO ================= */
+
+        .info-presensi {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        /* ================= CAMERA ================= */
+
+        .kamera-box {
+            width: 100%;
+            height: 300px;
+            background: #d9d9d9;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        #previewFoto {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        #canvas {
+            display: none;
+        }
+
+        #kameraPlaceholder {
+            color: #666;
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        /* ================= TOMBOL KAMERA ================= */
+
+        .kamera-actions {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .kamera-actions button {
+            min-width: 150px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #999;
+            background: #f4c542;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .kamera-actions button:hover:not(:disabled) {
+            background: #e0b637;
+        }
+
+        .kamera-actions button:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        /* ================= STATUS ================= */
+
+        #statusAbsensi {
+            margin-top: 18px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #5c3b00;
+            font-size: 12px;
+            background: #F9B818;
+            border-top: 1px solid #f0c33c;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                padding: 10px 0;
+            }
+
+            .navbar-brand {
+                font-size: 15px;
+            }
+
+            .navbar-brand img {
+                width: 32px;
+            }
+
+            .kamera-box {
+                height: 250px;
+            }
+
+            .info-presensi {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+
+            .kamera-box {
+                height: 280px;
+            }
+
+            .kamera-actions {
+                flex-direction: column;
+            }
+
+            .kamera-actions button {
+                width: 100%;
+            }
+
+            #map {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .navbar-brand {
+                font-size: 14px;
+            }
+
+            .navbar-brand img {
+                width: 29px;
+            }
+
+            #navbarNav .navbar-nav .nav-link {
+                font-size: 13px;
+                padding: 8px 0;
+            }
+
+            #navbarNav .logout-link {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+
+        <a class="navbar-brand d-flex align-items-center" href="dashboard.html">
+            <img src="foto/logo.png" width="35" class="me-2" alt="Logo HokyaAttend">
+            HokyaAttend
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Buka navigasi">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="dashboard.html">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="absensi.html">Presensi</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="riwayat_absensi.html">Riwayat Presensi</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="jadwal_kerja.html">Jadwal Kerja</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="pegajuan_izin.html">Pengajuan Izin</a>
+                </li>
+            </ul>
+
+            <a href="#" onclick="logout(); return false;" class="logout">
+                <i class="fas fa-sign-out-alt me-1"></i> Logout
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- ================= PRESENSI ================= -->
+
+<div class="container-fluid presensi-section">
+
+    <div class="container py-4">
+
+        <h5 class="text-white mb-4">
+            Presensi Masuk
+        </h5>
+
+        <div class="row g-4">
+
+            <!-- LOKASI -->
+
+            <div class="col-lg-6 col-md-6 col-12">
+
+                <div class="card-presensi">
+
+                    <div id="map"></div>
+
+                    <div class="info-presensi">
+                        <div id="statusLokasi">
+                            Mendeteksi lokasi...
+                        </div>
+                    </div>
+
+                    <div class="info-presensi">
+
+                        <div>
+                            📅
+                            <span id="tanggal"></span>
+                        </div>
+
+                        <div>
+                            🕒
+                            <span id="jam"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- KAMERA -->
+
+            <div class="col-lg-6 col-md-6 col-12">
+
+                <div class="card-presensi">
+
+                    <div class="kamera-box">
+
+                        <video
+                            id="video"
+                            autoplay
+                            muted
+                            playsinline>
+                        </video>
+
+                        <canvas id="canvas"></canvas>
+
+                        <img
+                            id="previewFoto"
+                            src=""
+                            alt="Preview Foto">
+
+                        <span id="kameraPlaceholder">
+                            📷 Kamera
+                        </span>
+
+                    </div>
+
+                    <!-- TOMBOL -->
+
+                    <div class="kamera-actions">
+
+                        <button
+                            type="button"
+                            id="btnKamera">
+
+                            <i class="fa-solid fa-camera"></i>
+                            Buka Kamera
+
+                        </button>
+
+                        <button
+                            type="button"
+                            id="btnFoto"
+                            style="display:none;">
+
+                            <i class="fa-solid fa-camera-retro"></i>
+                            Ambil Foto
+
+                        </button>
+
+                        <button
+                            type="button"
+                            id="btnMasuk"
+                            style="display:none;">
+
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Absen Masuk
+
+                        </button>
+
+                    </div>
+
+                    <!-- STATUS -->
+
+                    <div
+                        id="statusAbsensi"
+                        class="text-center">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+    Copyright &copy; HokyaAttend 2026
+</footer>
+
+<!-- ================= DATE TIME ================= -->
+
+<script>
+function updateDateTime() {
+
+    const now = new Date();
+
+    const tanggalOptions = {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    };
+
+    document.getElementById("tanggal").innerHTML =
+        now.toLocaleDateString("id-ID", tanggalOptions);
+
+    const jam = String(now.getHours()).padStart(2, "0");
+    const menit = String(now.getMinutes()).padStart(2, "0");
+    const detik = String(now.getSeconds()).padStart(2, "0");
+
+    document.getElementById("jam").innerHTML =
+        `${jam} : ${menit} : ${detik}`;
+}
+
+updateDateTime();
+
+setInterval(updateDateTime, 1000);
+</script>
+
+<!-- ================= LEAFLET ================= -->
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- ================= ABSENSI ================= -->
+
+<script src="js/api-config.js"></script>
+
+<script src="js/absensi_masuk.js"></script>
+
+<!-- ================= LOGOUT ================= -->
+
+<script src="js/logout.js"></script>
+
+<!-- ================= BOOTSTRAP ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

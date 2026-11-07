@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Admin Dimsum Hokya</title>
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- =====================================================
+         BOOTSTRAP 5
+    ====================================================== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- =====================================================
+         TABLER ICONS
+    ====================================================== -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+
+    <!-- =====================================================
+         NUNITO
+    ====================================================== -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900"
+        rel="stylesheet">
+
+    <!-- =====================================================
+         SB ADMIN
+    ====================================================== -->
+    <link href="css admin/sb-admin-2.min.css" rel="stylesheet">
+
+
+    <style>
+
+        /* =====================================================
+        TOMBOL SIDEBAR MOBILE
+        ===================================================== */
+
+        #sidebarToggleTop {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+
+            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+
+            background-color: rgba(255, 255, 255, 0.12) !important;
+
+            color: white !important;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+
+            box-shadow: none !important;
+
+            outline: none !important;
+        }
+
+
+        /* Saat diarahkan mouse */
+        #sidebarToggleTop:hover {
+            background-color: rgba(255, 255, 255, 0.20) !important;
+            color: white !important;
+        }
+
+
+        /* Saat ditekan */
+        #sidebarToggleTop:active {
+            background-color: rgba(255, 255, 255, 0.20) !important;
+            color: white !important;
+        }
+
+
+        /* Saat focus */
+        #sidebarToggleTop:focus {
+            background-color: rgba(255, 255, 255, 0.20) !important;
+            color: white !important;
+
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+
+        /* Setelah selesai ditekan */
+        #sidebarToggleTop:focus-visible {
+            background-color: rgba(255, 255, 255, 0.20) !important;
+            color: white !important;
+
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+
+        /* =====================================================
+        TABLET & HP
+        ===================================================== */
+
+        @media (max-width: 768px) {
+
+            #sidebarToggleTop {
+                display: flex;
+            }
+
+        }
+
+
+        /* =====================================================
+        HP KECIL
+        ===================================================== */
+
+        @media (max-width: 576px) {
+
+            #sidebarToggleTop {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+        }
+
+        /* =====================================================
+           SIDEBAR
+        ====================================================== */
+
+        .custom-sidebar {
+            border-right: 2px solid white;
+
+            background: linear-gradient(
+                135deg,
+                #8f0000,
+                #d70000
+            );
+        }
+
+
+        /* =====================================================
+           LOGO SIDEBAR
+        ====================================================== */
+
+        .sidebar-brand {
+            min-height: 100px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .sidebar-brand-icon img {
+            width: 75px;
+            height: 75px;
+
+            object-fit: contain;
+
+            margin-top: 10px;
+
+            filter: drop-shadow(
+                0 3px 5px rgba(0, 0, 0, 0.20)
+            );
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ====================================================== */
+
+        .topbar-custom {
+            height: 70px;
+
+            background: linear-gradient(
+                135deg,
+                #9F0000,
+                #8f0000
+            ) !important;
+
+            box-shadow:
+                0 2px 10px rgba(0, 0, 0, 0.12);
+        }
+
+
+        /* =====================================================
+           TOPBAR PROFILE
+        ====================================================== */
+
+        .topbar-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar-divider-custom {
+            width: 1px;
+            height: 30px;
+
+            background-color: rgba(
+                255,
+                255,
+                255,
+                0.35
+            );
+
+            margin: 0 15px;
+        }
+
+        .img-profile {
+            border: 2px solid white;
+
+            box-shadow:
+                0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* =====================================================
+           PAGE TITLE
+        ====================================================== */
+
+        .page-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+
+            color: #4a4a4a;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================================
+           TABEL RESPONSIVE
+        ====================================================== */
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #tableJadwal {
+            min-width: 950px;
+            vertical-align: middle;
+        }
+
+        #tableJadwal th {
+            white-space: nowrap;
+            background-color: #f8f9fa;
+        }
+
+        #tableJadwal td {
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           TOMBOL AKSI
+        ====================================================== */
+
+        .aksi-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Tombol Edit - Kuning */
+        .btn-edit {
+            background-color: #FFB200;
+            color: white;
+            border: none;
+
+            padding: 6px 12px;
+            border-radius: 6px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+            transition: 0.2s ease;
+        }
+
+        .btn-edit:hover {
+            background-color: #e5a000;
+            color: white;
+        }
+
+
+        /* Tombol Hapus - Merah */
+        .btn-hapus {
+            background-color: #CB0404;
+            color: white;
+            border: none;
+
+            padding: 6px 12px;
+            border-radius: 6px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+            transition: 0.2s ease;
+        }
+
+        .btn-hapus:hover {
+            background-color: #a90000;
+            color: white;
+        }
+
+        
+        /* =====================================================
+        MODAL EDIT IZIN - PERBAIKAN AREA TOMBOL
+        ===================================================== */
+
+        #modalEditIzin .modal-dialog {
+            width: calc(100% - 24px);
+            max-width: 650px;
+            margin: 12px auto;
+        }
+
+        #modalEditIzin .modal-content {
+            max-height: calc(100vh - 24px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Form menjadi wadah fleksibel */
+        #modalEditIzin #formEditIzin {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            flex: 1 1 auto;
+            overflow: hidden;
+        }
+
+        /* Header selalu terlihat */
+        #modalEditIzin .modal-header {
+            flex: 0 0 auto;
+        }
+
+        /* Hanya bagian formulir yang digulir */
+        #modalEditIzin .modal-body {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            padding: 20px;
+        }
+
+        /* Footer dan tombol tidak ikut terpotong */
+        #modalEditIzin .modal-footer {
+            position: relative;
+            z-index: 2;
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px 20px;
+            background-color: #fff;
+            border-top: 1px solid #dee2e6;
+        }
+
+        #modalEditIzin .modal-footer .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            visibility: visible;
+            opacity: 1;
+            flex: 0 0 auto;
+        }
+
+        /* Tampilan HP */
+        @media (max-width: 576px) {
+            #modalEditIzin .modal-dialog {
+                width: calc(100% - 16px);
+                margin: 8px auto;
+            }
+
+            #modalEditIzin .modal-content {
+                max-height: calc(100vh - 16px);
+            }
+
+            #modalEditIzin .modal-body {
+                padding: 14px;
+            }
+
+            #modalEditIzin .modal-footer {
+                padding: 10px 14px;
+            }
+        }
+
+
+        /* Tampilan layar HP */
+        @media (max-width: 576px) {
+            #modalEditIzin .modal-dialog {
+                width: calc(100% - 16px);
+                margin: 8px auto;
+            }
+
+            #modalEditIzin .modal-content {
+                max-height: calc(100vh - 16px);
+            }
+
+            #modalEditIzin .modal-body {
+                padding: 14px;
+            }
+
+            #modalEditIzin .modal-footer {
+                padding: 10px 14px;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 768px) {
+
+            .card-body {
+                padding: 15px;
+            }
+
+            .filter-container {
+                margin-bottom: 15px;
+            }
+
+            .filter-buttons {
+                margin-top: 10px;
+            }
+
+            .filter-buttons .btn {
+                margin-bottom: 5px;
+            }
+
+            .page-title {
+                font-size: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body id="page-top">
+
+    <!-- =====================================================
+         PAGE WRAPPER
+    ====================================================== -->
+
+    <div id="wrapper">
+
+
+        <!-- =====================================================
+            SIDEBAR
+        ====================================================== -->
+
+        <ul
+            class="navbar-nav sidebar sidebar-dark accordion custom-sidebar"
+            id="accordionSidebar">
+
+
+            <!-- =================================================
+                LOGO
+            ================================================== -->
+
+            <a
+                class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="dashboard_admin.html">
+
+                <div class="sidebar-brand-icon">
+
+                    <img
+                        src="foto/logo.png"
+                        alt="Logo Dimsum Hokya">
+
+                </div>
+
+            </a>
+
+
+            <hr class="sidebar-divider my-0">
+
+
+            <!-- =================================================
+                DASHBOARD
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="dashboard_admin.html">
+
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                HEADING
+            ================================================== -->
+
+            <div class="sidebar-heading">
+                Data Master
+            </div>
+
+
+            <!-- =================================================
+                DATA ABSENSI
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_absensi_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Presensi</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                TAMBAH TARGET KERJA
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_target_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Target Kerja</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                DATA TARGET KERJA
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_target_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Target Kerja</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 TAMBAH DATA CABANG
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_data_cabang.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Data Cabang</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                DATA CABANG
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_cabang_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Cabang</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                TAMBAH JADWAL
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_jadwal_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Jadwal Kerja</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                DATA JADWAL
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_jadwal_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Jadwal Kerja</span>
+
+                </a>
+
+            </li>
+
+             <!-- =================================================
+                DATA IZIN
+            ================================================== -->
+
+            <li class="nav-item active">
+
+                <a
+                    class="nav-link"
+                    href="data_izin_masuk.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Izin Tidak Masuk</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                TAMBAH DATA KARYAWAN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_data_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Data Karyawan</span>
+
+                </a>
+
+            </li>
+
+            <!-- =================================================
+                DATA KARYAWAN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Karyawan</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                TAMBAH AKUN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_akun_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Akun Karyawan</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                DATA AKUN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_akun_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Akun Karyawan</span>
+
+                </a>
+
+            </li>
+
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+        </ul>
+
+
+        <!-- =====================================================
+             CONTENT WRAPPER
+        ====================================================== -->
+
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <div id="content">
+
+
+                <!-- =================================================
+                     TOPBAR
+                ================================================== -->
+
+                <nav
+                    class="navbar navbar-expand navbar-light topbar topbar-custom mb-4 static-top shadow">
+
+                    <!-- =================================================
+                        RIGHT SIDE
+                    ================================================== -->
+
+                    <button
+                        id="sidebarToggleTop"
+                        class="btn"
+                        type="button"
+                        aria-label="Buka menu navigasi">
+
+                        <i class="fas fa-bars"></i>
+
+                    </button>
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item dropdown no-arrow">
+
+                            <a
+                                class="nav-link dropdown-toggle topbar-profile"
+                                href="#"
+                                id="userDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+
+                                <span
+                                    class="me-2 d-none d-lg-inline text-white small"
+                                    id="namaAdmin">
+
+                                    Admin
+
+                                </span>
+
+
+                                <div
+                                    class="topbar-divider-custom d-none d-sm-block">
+                                </div>
+
+
+                                <img
+                                    class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg"
+                                    alt="Profile"
+                                    style="
+                                        width:40px;
+                                        height:40px;
+                                    ">
+
+                            </a>
+
+
+                            <!-- DROPDOWN -->
+
+                            <div
+                                class="dropdown-menu dropdown-menu-end shadow">
+
+                                <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    id="btnLogout">
+
+                                    <i
+                                        class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400">
+                                    </i>
+
+                                    Logout
+
+                                </a>
+
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+
+                <!-- =================================================
+                     MAIN CONTENT
+                ================================================== -->
+
+                <div class="container-fluid">
+
+
+                    <!-- PAGE TITLE -->
+
+                    <h1 class="h3 mb-3 text-gray-800 page-title">
+                        Data Izin Karyawan
+                    </h1>
+
+
+                    <!-- =================================================
+                         CARD
+                    ================================================== -->
+
+                    <div class="card shadow mb-4">
+
+
+                        <!-- CARD HEADER -->
+
+                        <div class="card-header py-3 d-flex align-items-center">
+
+                            <i
+                                class="fas fa-fw fa-table me-2"
+                                style="color: black;">
+                            </i>
+
+                            <h6 class="m-0 font-weight-bold text-black">
+                                Data Izin Tidak Masuk Karyawan
+                            </h6>
+
+                        </div>
+
+
+                        <!-- CARD BODY -->
+
+                        <div class="card-body">
+
+                            <!-- =====================================================
+                                FILTER JADWAL KERJA
+                            ====================================================== -->
+
+                            <div class="row filter-container align-items-end g-3">
+
+                                <!-- FILTER BULAN -->
+                                <div class="col-md-4">
+
+                                    <label
+                                        for="filterBulan"
+                                        class="form-label">
+
+                                        Pilih Bulan
+
+                                    </label>
+
+                                    <input
+                                        type="month"
+                                        id="filterBulan"
+                                        class="form-control">
+
+                                </div>
+
+
+                                <!-- TOMBOL -->
+                                <div class="col-md-4 filter-buttons">
+
+                                    <button
+                                        type="button"
+                                        id="btnFilter"
+                                        class="btn"
+                                        style="
+                                            background-color:#f4b400;
+                                            color:white;
+                                        ">
+
+                                        <i class="ti ti-search"></i>
+
+                                        Tampilkan
+
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        id="btnSemua"
+                                        class="btn btn-secondary">
+
+                                        <i class="ti ti-list"></i>
+
+                                        Semua Data
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <hr>
+
+
+                            <!-- =================================================
+                                 ALERT
+                            ================================================== -->
+
+                            <div
+                                id="alertJadwal"
+                                class="alert d-none">
+                            </div>
+
+
+                            <!-- =================================================
+                                 TABLE
+                            ================================================== -->
+
+                            <div class="table-responsive">
+
+                                <table
+                                    class="table table-bordered table-hover"
+                                    id="tableJadwal"
+                                    width="100%">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th class="text-center">
+                                                No
+                                            </th>
+
+                                            <th>
+                                                Nama Karyawan
+                                            </th>
+
+                                            <th>
+                                                Tanggal Mulai
+                                            </th>
+
+                                            <th>
+                                                Tanggal Selesai
+                                            </th>
+
+                                            <th>
+                                                Jenis Izin
+                                            </th>
+
+                                            <th>
+                                                Alasan
+                                            </th>
+
+                                            <th>
+                                                Foto Bukti
+                                            </th>
+
+                                            <th>
+                                                Tanggal Pengajuan
+                                            </th>
+
+                                            <th>
+                                                Status
+                                            </th>
+
+                                            <th class="text-center">
+                                                Aksi
+                                            </th>
+
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <tbody id="tableJadwalBody">
+
+                                        <tr>
+
+                                            <td
+                                                colspan="10"
+                                                class="text-center">
+
+                                                Memuat data jadwal...
+
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 FOOTER
+            ====================================================== -->
+
+            <footer class="sticky-footer bg-white">
+
+                <div class="container my-auto">
+
+                    <div class="copyright text-center my-auto">
+
+                        <span>
+                            Copyright &copy;
+                            Dimsum Hokya
+                            2026
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </footer>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         MODAL EDIT JADWAL
+    ========================================================== -->
+    
+    <!-- Modal Edit Pengajuan Izin -->
+    <div class="modal fade"
+        id="modalEditIzin"
+        tabindex="-1"
+        aria-labelledby="modalEditIzinLabel"
+        aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <form id="formEditIzin">
+
+                    <!-- HEADER -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditIzinLabel">
+                            Edit Pengajuan Izin
+                        </h5>
+
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Tutup"></button>
+                    </div>
+
+                    <!-- ISI FORM -->
+                    <div class="modal-body">
+
+                        <input type="hidden" id="edit_id_izin">
+
+                        <div class="mb-3">
+                            <label for="edit_id_karyawan" class="form-label">
+                                Nama Karyawan
+                            </label>
+
+                            <select id="edit_id_karyawan"
+                                    class="form-select"
+                                    required>
+                                <option value="">Memuat daftar karyawan...</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_tanggal_mulai" class="form-label">
+                                    Tanggal Mulai
+                                </label>
+
+                                <input type="date"
+                                    id="edit_tanggal_mulai"
+                                    class="form-control"
+                                    required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_tanggal_selesai" class="form-label">
+                                    Tanggal Selesai
+                                </label>
+
+                                <input type="date"
+                                    id="edit_tanggal_selesai"
+                                    class="form-control"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="edit_jenis_izin" class="form-label">
+                                Jenis Izin
+                            </label>
+
+                            <select id="edit_jenis_izin"
+                                    class="form-select"
+                                    required>
+                                <option value="izin">Izin</option>
+                                <option value="sakit">Sakit</option>
+                                <option value="keperluan_pribadi">
+                                    Keperluan Pribadi
+                                </option>
+                                <option value="lainnya">Lainnya</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="edit_alasan" class="form-label">
+                                Alasan Pengajuan
+                            </label>
+
+                            <textarea id="edit_alasan"
+                                    class="form-control"
+                                    rows="4"
+                                    required
+                                    placeholder="Masukkan alasan pengajuan izin"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="edit_status" class="form-label">
+                                Status Pengajuan
+                            </label>
+
+                            <select id="edit_status"
+                                    class="form-select"
+                                    required>
+                                <option value="disetujui">Disetujui</option>
+                                <option value="ditolak">Ditolak</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="edit_catatan_admin" class="form-label">
+                                Catatan Admin
+                            </label>
+
+                            <textarea id="edit_catatan_admin"
+                                    class="form-control"
+                                    rows="3"
+                                    placeholder="Catatan admin (opsional)"></textarea>
+                        </div>
+
+                        <div class="alert alert-info small mb-0">
+                            Perubahan karyawan atau tanggal akan diperiksa
+                            kembali sesuai aturan kuota izin yang berlaku.
+                        </div>
+
+                    </div>
+
+                    <!-- TOMBOL SELALU DI BAGIAN BAWAH -->
+                    <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                            Batal
+                        </button>
+
+                        <button type="submit"
+                                class="btn btn-danger">
+                            Simpan Perubahan
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    
+
+
+
+    <!-- =========================================================
+     JAVASCRIPT
+    ========================================================= -->
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="js/data_izin_masuk_admin.js"></script>
+
+
+<!-- =========================================================
+     TAMBAHKAN TEKS PADA TOMBOL AKSI
+     Tidak mengubah fungsi tombol
+========================================================= -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    function tambahkanTulisanTombol() {
+
+        /* ================================
+           TOMBOL EDIT
+        ================================= */
+
+        document.querySelectorAll(".btn-edit").forEach(function (button) {
+
+            if (!button.querySelector(".text-edit")) {
+
+                const icon = button.querySelector("i");
+
+                const text = document.createElement("span");
+
+                text.className = "text-edit";
+
+                text.textContent = "Edit";
+
+                if (icon) {
+                    icon.insertAdjacentElement("afterend", text);
+                } else {
+                    button.appendChild(text);
+                }
+
+            }
+
+        });
+
+
+        /* ================================
+           TOMBOL HAPUS
+        ================================= */
+
+        document.querySelectorAll(".btn-hapus").forEach(function (button) {
+
+            if (!button.querySelector(".text-hapus")) {
+
+                const icon = button.querySelector("i");
+
+                const text = document.createElement("span");
+
+                text.className = "text-hapus";
+
+                text.textContent = "Hapus";
+
+                if (icon) {
+                    icon.insertAdjacentElement("afterend", text);
+                } else {
+                    button.appendChild(text);
+                }
+
+            }
+
+        });
+
+    }
+
+
+    /* Jalankan pertama kali */
+    tambahkanTulisanTombol();
+
+
+    /* 
+       Karena data tabel kemungkinan dibuat
+       oleh JavaScript secara dinamis,
+       cek kembali setelah tabel berubah.
+    */
+
+    const tableBody = document.getElementById("tableJadwalBody");
+
+    if (tableBody) {
+
+        const observer = new MutationObserver(function () {
+
+            tambahkanTulisanTombol();
+
+        });
+
+        observer.observe(tableBody, {
+            childList: true,
+            subtree: true
+        });
+
+    }
+
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // =====================================================
+    // TAMPILKAN NAMA AKUN YANG SEDANG LOGIN
+    // =====================================================
+
+    const namaAdmin = document.getElementById("namaAdmin");
+
+    if (!namaAdmin) {
+        console.error("Element #namaAdmin tidak ditemukan.");
+        return;
+    }
+
+
+    // =====================================================
+    // AMBIL DATA USER DARI LOCAL STORAGE
+    // =====================================================
+
+    const userData = localStorage.getItem("user");
+
+
+    if (!userData) {
+
+        console.warn("Data user tidak ditemukan di localStorage.");
+
+        namaAdmin.textContent = "Admin";
+
+        return;
+    }
+
+
+    // =====================================================
+    // PARSE DATA USER
+    // =====================================================
+
+    try {
+
+        const user = JSON.parse(userData);
+
+        console.log("Data user login:", user);
+
+
+        // =================================================
+        // AMBIL NAMA LENGKAP
+        // =================================================
+
+        if (user.nama_lengkap) {
+
+            namaAdmin.textContent =
+                user.nama_lengkap;
+
+        } else if (user.nama) {
+
+            namaAdmin.textContent =
+                user.nama;
+
+        } else if (user.username) {
+
+            namaAdmin.textContent =
+                user.username;
+
+        } else {
+
+            namaAdmin.textContent = "Admin";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Gagal membaca data user:",
+            error
+        );
+
+        namaAdmin.textContent = "Admin";
+
+    }
+
+});
+</script>
+
+<!-- Logout -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const btnLogout = document.getElementById("btnLogout");
+
+        if (!btnLogout) {
+            console.error("Tombol logout tidak ditemukan.");
+            return;
+        }
+
+        btnLogout.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            // Konfirmasi logout
+            const yakin = confirm("Apakah kamu yakin ingin logout?");
+
+            if (!yakin) {
+                return;
+            }
+
+            // =====================================================
+            // HAPUS DATA LOGIN
+            // =====================================================
+
+            localStorage.removeItem("user");
+            localStorage.removeItem("id_user");
+            localStorage.removeItem("id_karyawan");
+            localStorage.removeItem("role");
+            localStorage.removeItem("nama_lengkap");
+            localStorage.removeItem("username");
+
+            // Hapus seluruh session storage
+            sessionStorage.clear();
+
+            // =====================================================
+            // CEGAH KEMBALI KE DASHBOARD DENGAN TOMBOL BACK
+            // =====================================================
+
+            window.history.pushState(null, "", window.location.href);
+
+            window.onpopstate = function () {
+                window.history.pushState(null, "", window.location.href);
+            };
+
+            // =====================================================
+            // ARAHKAN KE HALAMAN LOGIN
+            // =====================================================
+
+            window.location.replace("login.html");
+
+        });
+
+    });
+    </script>
+
+    <!-- Pengecekan Logout -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const userData = localStorage.getItem("user");
+
+        // Jika tidak ada data login,
+        // jangan izinkan membuka dashboard
+        if (!userData) {
+
+            window.location.replace("login.html");
+
+            return;
+        }
+
+        try {
+
+            const user = JSON.parse(userData);
+
+            // Pastikan user adalah admin
+            if (user.role && user.role !== "admin") {
+
+                localStorage.clear();
+                sessionStorage.clear();
+
+                window.location.replace("login.html");
+
+                return;
+            }
+
+        } catch (error) {
+
+            console.error("Data login tidak valid.");
+
+            localStorage.clear();
+            sessionStorage.clear();
+
+            window.location.replace("login.html");
+        }
+
+    });
+    </script>
+
+</body>
+
+</html>

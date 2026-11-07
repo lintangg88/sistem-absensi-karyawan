@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+
+    <meta name="author" content="">
+
+    <title>Admin Dimsum Hokya</title>
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        href="vendor/fontawesome-free/css/all.min.css"
+        rel="stylesheet"
+        type="text/css">
+
+
+    <!-- =====================================================
+         BOOTSTRAP 5.3.3
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous">
+
+
+    <!-- =====================================================
+         TABLER ICON
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         SB ADMIN 2
+    ====================================================== -->
+
+    <link
+        href="css admin/sb-admin-2.min.css"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         DATATABLE
+    ====================================================== -->
+
+    <link
+        href="vendor/datatables/dataTables.bootstrap4.min.css"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         CUSTOM CSS
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           SIDEBAR
+        ====================================================== */
+
+        .custom-sidebar {
+
+            border-right: 2px solid white;
+
+            background: linear-gradient(
+                135deg,
+                #8f0000,
+                #d70000
+            );
+
+        }
+
+
+        /* =====================================================
+           TOMBOL SIDEBAR MOBILE
+        ====================================================== */
+
+        #sidebarToggleTop {
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 8px;
+
+            border: 1px solid rgba(
+                255,
+                255,
+                255,
+                0.25
+            ) !important;
+
+            background-color: rgba(
+                255,
+                255,
+                255,
+                0.12
+            ) !important;
+
+            color: white !important;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+
+            box-shadow: none !important;
+
+            outline: none !important;
+
+        }
+
+
+        #sidebarToggleTop:hover,
+        #sidebarToggleTop:active,
+        #sidebarToggleTop:focus,
+        #sidebarToggleTop:focus-visible {
+
+            background-color: rgba(
+                255,
+                255,
+                255,
+                0.20
+            ) !important;
+
+            color: white !important;
+
+            box-shadow: none !important;
+
+            outline: none !important;
+
+        }
+
+
+        /* =====================================================
+           LOGO SIDEBAR
+        ====================================================== */
+
+        .sidebar-brand {
+
+            min-height: 100px;
+
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+        }
+
+
+        .sidebar-brand-icon img {
+
+            width: 75px;
+            height: 75px;
+
+            object-fit: contain;
+
+            margin-top: 10px;
+
+            filter: drop-shadow(
+                0 3px 5px
+                rgba(0, 0, 0, 0.20)
+            );
+
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ====================================================== */
+
+        .topbar-custom {
+
+            height: 70px;
+
+            background: linear-gradient(
+                135deg,
+                #9F0000,
+                #8f0000
+            ) !important;
+
+            box-shadow:
+                0 2px 10px
+                rgba(0, 0, 0, 0.12);
+
+        }
+
+
+        /* =====================================================
+           TOPBAR PROFILE
+        ====================================================== */
+
+        .topbar-profile {
+
+            display: flex;
+
+            align-items: center;
+
+        }
+
+
+        .topbar-divider-custom {
+
+            width: 1px;
+
+            height: 30px;
+
+            background-color: rgba(
+                255,
+                255,
+                255,
+                0.35
+            );
+
+            margin: 0 15px;
+
+        }
+
+
+        .img-profile {
+
+            border: 2px solid white;
+
+            box-shadow:
+                0 2px 5px
+                rgba(0, 0, 0, 0.15);
+
+        }
+
+
+        /* =====================================================
+           PAGE TITLE
+        ====================================================== */
+
+        .page-title {
+
+            font-size: 1.6rem;
+
+            font-weight: 700;
+
+            color: #4a4a4a;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* =====================================================
+           CARD HEADER
+        ====================================================== */
+
+        .card-header {
+
+            display: flex;
+
+            align-items: center;
+
+        }
+
+
+        .card-header h6 {
+
+            margin: 0;
+
+        }
+
+
+        /* =====================================================
+           TABLE
+        ====================================================== */
+
+        .table-responsive {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+            -webkit-overflow-scrolling: touch;
+
+        }
+
+
+        #tableAbsensi {
+
+            vertical-align: middle;
+
+        }
+
+
+        #tableAbsensi th {
+
+            white-space: nowrap;
+
+            vertical-align: middle;
+
+            background-color: #f8f9fa;
+
+        }
+
+
+        #tableAbsensi td {
+
+            vertical-align: middle;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* =====================================================
+           TOMBOL AKSI
+        ====================================================== */
+
+        .aksi-wrapper {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 6px;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* =====================================================
+           TOMBOL EDIT
+        ====================================================== */
+
+        .btn-edit {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 5px;
+
+            background-color: #FFB200;
+
+            color: white;
+
+            border: none;
+
+            padding: 6px 12px;
+
+            border-radius: 6px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            text-decoration: none;
+
+            transition: all 0.2s ease;
+
+        }
+
+
+        .btn-edit:hover {
+
+            background-color: #e5a000;
+
+            color: white;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        .btn-edit i {
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           TOMBOL HAPUS
+        ====================================================== */
+
+        .btn-hapus {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 5px;
+
+            background-color: #CB0404;
+
+            color: white;
+
+            border: none;
+
+            padding: 6px 12px;
+
+            border-radius: 6px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            text-decoration: none;
+
+            transition: all 0.2s ease;
+
+        }
+
+
+        .btn-hapus:hover {
+
+            background-color: #a90000;
+
+            color: white;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        .btn-hapus i {
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           GRAFIK STATISTIK DASHBOARD
+        ====================================================== */
+
+        .dashboard-chart-card {
+
+            border: 0;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+        }
+
+
+        .dashboard-chart-header {
+
+            background-color: #ffffff;
+
+            border-bottom: 1px solid #e3e6f0;
+
+            padding: 18px 20px;
+
+        }
+
+
+        .dashboard-chart-header h6 {
+
+            margin: 0;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            color: #333333;
+
+        }
+
+
+        .dashboard-chart-body {
+
+            padding: 25px 30px 30px 30px;
+
+            background-color: #ffffff;
+
+        }
+
+
+        /* =====================================================
+           AREA GRAFIK
+        ====================================================== */
+
+        #dashboardChart {
+
+            width: 100%;
+
+            min-height: 350px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-around;
+
+            gap: 30px;
+
+            padding: 20px 20px 0 20px;
+
+            border-bottom: 1px solid #dddddd;
+
+        }
+
+
+        /* =====================================================
+           ITEM GRAFIK
+        ====================================================== */
+
+        .chart-item {
+
+            flex: 1;
+
+            height: 300px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: flex-end;
+
+            align-items: center;
+
+            min-width: 80px;
+
+        }
+
+
+        /* =====================================================
+           NILAI GRAFIK
+        ====================================================== */
+
+        .chart-value {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #333333;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        /* =====================================================
+           AREA BATANG
+        ====================================================== */
+
+        .chart-bar-area {
+
+            width: 100%;
+
+            max-width: 85px;
+
+            height: 220px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: center;
+
+        }
+
+
+        /* =====================================================
+           BATANG GRAFIK
+        ====================================================== */
+
+        .chart-bar {
+
+            width: 65px;
+
+            min-height: 4px;
+
+            border-radius: 7px 7px 0 0;
+
+            transition:
+                height 0.5s ease,
+                transform 0.2s ease;
+
+        }
+
+
+        /* =====================================================
+           WARNA BATANG
+        ====================================================== */
+
+        .chart-bar-karyawan {
+
+            background-color: #e74a3b;
+
+        }
+
+
+        .chart-bar-absensi {
+
+            background-color: #f6c23e;
+
+        }
+
+
+        .chart-bar-jadwal {
+
+            background-color: #1cc88a;
+
+        }
+
+
+        .chart-bar-izin {
+
+            background-color: #36b9cc;
+
+        }
+
+
+        /* =====================================================
+           HOVER BATANG
+        ====================================================== */
+
+        .chart-bar:hover {
+
+            transform: scaleX(1.05);
+
+        }
+
+
+        /* =====================================================
+           LABEL GRAFIK
+        ====================================================== */
+
+        .chart-label {
+
+            margin-top: 12px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #555555;
+
+            text-align: center;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        #content-wrapper {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+        #content {
+
+            flex: 1 0 auto;
+
+        }
+
+
+        .custom-footer {
+
+            width: 100%;
+
+            background-color: #ffffff;
+
+            border-top: 1px solid #e3e6f0;
+
+            padding: 20px 0;
+
+            margin-top: 30px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .custom-footer .copyright {
+
+            color: #858796;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 768px) {
+
+            #sidebarToggleTop {
+
+                display: flex;
+
+            }
+
+
+            .page-title {
+
+                font-size: 22px;
+
+            }
+
+
+            .card-body {
+
+                padding: 15px;
+
+            }
+
+
+            .aksi-wrapper {
+
+                gap: 5px;
+
+            }
+
+
+            .btn-edit,
+            .btn-hapus {
+
+                padding: 6px 10px;
+
+                font-size: 13px;
+
+            }
+
+
+            .filter-buttons {
+
+                margin-top: 10px;
+
+            }
+
+
+            /* Grafik */
+
+            .dashboard-chart-body {
+
+                padding: 20px 15px 25px 15px;
+
+            }
+
+
+            #dashboardChart {
+
+                gap: 10px;
+
+                padding: 15px 5px 0 5px;
+
+            }
+
+
+            .chart-item {
+
+                height: 270px;
+
+            }
+
+
+            .chart-bar-area {
+
+                height: 190px;
+
+            }
+
+
+            .chart-bar {
+
+                width: 50px;
+
+            }
+
+
+            .chart-value {
+
+                font-size: 16px;
+
+            }
+
+
+            .chart-label {
+
+                font-size: 12px;
+
+            }
+
+        }
+
+        /* =====================================================
+        FIX SCROLL SIDEBAR (UKURAN UTUH & TETAP RESPANSIF)
+        ====================================================== */
+
+        .custom-sidebar {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            flex-shrink: 0 !important; /* Menjaga agar proporsi & isi sidebar tidak tertekan/gepeng */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Menjaga lebar sidebar tetap utuh di layar mobile */
+        @media (max-width: 768px) {
+            .custom-sidebar {
+                width: 7rem !important; /* Menjaga lebar tetap sama seperti versi asli/desktop */
+            }
+        }
+
+        /* Scrollbar tipis transparan agar tampilan rapi */
+        .custom-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+
+        /* =====================================================
+           HP KECIL
+        ====================================================== */
+
+        @media (max-width: 576px) {
+
+            .custom-footer {
+
+                padding: 16px 10px;
+
+                margin-top: 20px;
+
+            }
+
+
+            .custom-footer .copyright {
+
+                font-size: 13px;
+
+            }
+
+
+            /* Grafik */
+
+            .dashboard-chart-body {
+
+                padding: 15px 10px 20px 10px;
+
+            }
+
+
+            #dashboardChart {
+
+                gap: 5px;
+
+                padding: 10px 0 0 0;
+
+            }
+
+
+            .chart-item {
+
+                height: 230px;
+
+                min-width: 55px;
+
+            }
+
+
+            .chart-bar-area {
+
+                height: 155px;
+
+            }
+
+
+            .chart-bar {
+
+                width: 38px;
+
+            }
+
+
+            .chart-value {
+
+                font-size: 14px;
+
+            }
+
+
+            .chart-label {
+
+                font-size: 11px;
+
+                line-height: 1.2;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body id="page-top">
+
+
+    <!-- =====================================================
+         PAGE WRAPPER
+    ====================================================== -->
+
+    <div id="wrapper">
+
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+
+        <ul
+            class="navbar-nav sidebar sidebar-dark accordion custom-sidebar"
+            id="accordionSidebar">
+
+
+            <!-- =================================================
+                 LOGO
+            ================================================== -->
+
+            <a
+                class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="dashboard_admin.html">
+
+                <div class="sidebar-brand-icon">
+
+                    <img
+                        src="foto/logo.png"
+                        alt="Logo Dimsum Hokya">
+
+                </div>
+
+            </a>
+
+
+            <hr class="sidebar-divider my-0">
+
+
+            <!-- =================================================
+                 DASHBOARD
+            ================================================== -->
+
+            <li class="nav-item active">
+
+                <a
+                    class="nav-link"
+                    href="dashboard_admin.html">
+
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 HEADING
+            ================================================== -->
+
+            <div class="sidebar-heading">
+
+                Data Master
+
+            </div>
+
+
+            <!-- =================================================
+                 DATA ABSENSI
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_absensi_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Presensi</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 TAMBAH TARGET KERJA
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_target_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Target Kerja</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 DATA TARGET KERJA
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_target_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Target Kerja</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 TAMBAH DATA CABANG
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_data_cabang.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Data Cabang</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                DATA CABANG
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_cabang_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Cabang</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 TAMBAH JADWAL
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_jadwal_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Jadwal Kerja</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 DATA JADWAL
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_jadwal_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Jadwal Kerja</span>
+
+                </a>
+
+            </li>
+
+            <!-- =================================================
+                 DATA Izin 
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_izin_masuk.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Izin Tidak Masuk</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 TAMBAH DATA KARYAWAN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_data_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Data Karyawan</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 DATA KARYAWAN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Karyawan</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 TAMBAH AKUN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_akun_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Akun Karyawan</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 DATA AKUN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_akun_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Akun Karyawan</span>
+
+                </a>
+
+            </li>
+
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+
+        </ul>
+
+
+        <!-- =====================================================
+             CONTENT WRAPPER
+        ====================================================== -->
+
+        <div
+            id="content-wrapper"
+            class="d-flex flex-column">
+
+
+            <!-- =================================================
+                 MAIN CONTENT
+            ================================================== -->
+
+            <div id="content">
+
+
+                <!-- =================================================
+                     TOPBAR
+                ================================================== -->
+
+                <nav
+                    class="navbar navbar-expand navbar-light topbar topbar-custom mb-4 static-top shadow">
+
+
+                    <!-- =================================================
+                         SIDEBAR TOGGLE
+                    ================================================== -->
+
+                    <button
+                        id="sidebarToggleTop"
+                        class="btn"
+                        type="button"
+                        aria-label="Buka menu navigasi">
+
+                        <i class="fas fa-bars"></i>
+
+                    </button>
+
+
+                    <!-- =================================================
+                         RIGHT SIDE
+                    ================================================== -->
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item dropdown no-arrow">
+
+                            <a
+                                class="nav-link dropdown-toggle topbar-profile"
+                                href="#"
+                                id="userDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+
+
+                                <!-- NAMA ADMIN -->
+
+                                <span
+                                    id="namaAdmin"
+                                    class="me-2 d-none d-lg-inline text-white small">
+
+                                    Admin
+
+                                </span>
+
+
+                                <div
+                                    class="topbar-divider-custom d-none d-sm-block">
+                                </div>
+
+
+                                <!-- FOTO PROFILE -->
+
+                                <img
+                                    class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg"
+                                    alt="Profile"
+                                    style="
+                                        width:40px;
+                                        height:40px;
+                                    ">
+
+                            </a>
+
+
+                            <!-- DROPDOWN -->
+
+                            <div
+                                class="dropdown-menu dropdown-menu-end shadow">
+
+                                <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    id="btnLogout">
+
+                                    <i
+                                        class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400">
+                                    </i>
+
+                                    Logout
+
+                                </a>
+
+                            </div>
+
+
+                        </li>
+
+                    </ul>
+
+
+                </nav>
+
+
+                <!-- =================================================
+                     END TOPBAR
+                ================================================== -->
+
+
+                <!-- =================================================
+                     BEGIN PAGE CONTENT
+                ================================================== -->
+
+                <div class="container-fluid">
+
+
+                    <!-- PAGE TITLE -->
+
+                    <h1 class="h3 mb-2 text-gray-800">
+
+                        Dashboard
+
+                    </h1>
+
+                    <br>
+
+
+                    <!-- =================================================
+                         WELCOME CARD
+                    ================================================== -->
+
+                    <div class="card shadow mb-4">
+
+
+                        <!-- HEADER -->
+
+                        <div class="card-header py-3">
+
+                            <h6
+                                class="m-0 font-weight-bold"
+                                style="color: black;">
+
+                                Selamat Datang, Admin!
+
+                            </h6>
+
+                        </div>
+
+
+                        <!-- =================================================
+                             STATISTIK DASHBOARD
+                        ================================================== -->
+
+                        <div class="row ps-3 pe-3 pt-3">
+
+
+                            <!-- =================================================
+                                 TOTAL KARYAWAN
+                            ================================================== -->
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+
+                                <div
+                                    class="card bg-danger text-white shadow h-100 py-2">
+
+                                    <div
+                                        class="card-body d-flex justify-content-between align-items-center">
+
+
+                                        <div>
+
+                                            <div
+                                                id="totalKaryawan"
+                                                class="h4 mb-1 font-weight-bold">
+
+                                                0
+
+                                            </div>
+
+
+                                            <div class="small">
+
+                                                Total Karyawan
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <i
+                                            class="fas fa-users fa-2x">
+                                        </i>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- =================================================
+                                 TOTAL ABSENSI
+                            ================================================== -->
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+
+                                <div
+                                    class="card bg-warning text-white shadow h-100 py-2">
+
+                                    <div
+                                        class="card-body d-flex justify-content-between align-items-center">
+
+
+                                        <div>
+
+                                            <div
+                                                id="totalAbsensi"
+                                                class="h4 mb-1 font-weight-bold">
+
+                                                0
+
+                                            </div>
+
+
+                                            <div class="small">
+
+                                                Total Presensi
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <i
+                                            class="fas fa-calendar-check fa-2x">
+                                        </i>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- =================================================
+                                 TOTAL JADWAL
+                            ================================================== -->
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+
+                                <div
+                                    class="card bg-success text-white shadow h-100 py-2">
+
+                                    <div
+                                        class="card-body d-flex justify-content-between align-items-center">
+
+
+                                        <div>
+
+                                            <div
+                                                id="totalJadwal"
+                                                class="h4 mb-1 font-weight-bold">
+
+                                                0
+
+                                            </div>
+
+
+                                            <div class="small">
+
+                                                Total Jadwal Kerja
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <i
+                                            class="fas fa-calendar-alt fa-2x">
+                                        </i>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- =================================================
+                                 TOTAL PENGAJUAN IZIN
+                            ================================================== -->
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+
+                                <div
+                                    class="card bg-info text-white shadow h-100 py-2">
+
+                                    <div
+                                        class="card-body d-flex justify-content-between align-items-center">
+
+
+                                        <div>
+
+                                            <div
+                                                id="totalIzin"
+                                                class="h4 mb-1 font-weight-bold">
+
+                                                0
+
+                                            </div>
+
+
+                                            <div class="small">
+
+                                                Pengajuan Izin
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <i
+                                            class="fas fa-file-alt fa-2x">
+                                        </i>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- =====================================================
+                         GRAFIK STATISTIK DASHBOARD
+                    ====================================================== -->
+
+                    <div
+                        class="card shadow mb-4 dashboard-chart-card">
+
+
+                        <!-- HEADER GRAFIK -->
+
+                        <div class="dashboard-chart-header">
+
+                            <h6>
+
+                                Statistik Dashboard
+
+                            </h6>
+
+                        </div>
+
+
+                        <!-- BODY GRAFIK -->
+
+                        <div class="dashboard-chart-body">
+
+                            <div
+                                id="dashboardChart">
+
+                                <!-- Grafik akan dibuat otomatis oleh
+                                     dashboard_admin.js -->
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     END MAIN CONTENT
+                ================================================== -->
+
+
+            </div>
+
+
+            <!-- =====================================================
+                 FOOTER
+            ====================================================== -->
+
+            <footer class="custom-footer">
+
+
+                <div class="container">
+
+
+                    <div class="copyright text-center">
+
+
+                        <span>
+
+                            Copyright &copy;
+
+                            Dimsum Hokya
+
+                            2026
+
+                        </span>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </footer>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         JQUERY
+    ====================================================== -->
+
+    <script
+        src="vendor/jquery/jquery.min.js">
+    </script>
+
+
+    <!-- =====================================================
+         BOOTSTRAP 5.3.3
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+
+    <!-- =====================================================
+         JQUERY EASING
+    ====================================================== -->
+
+    <script
+        src="vendor/jquery-easing/jquery.easing.min.js">
+    </script>
+
+
+    <!-- =====================================================
+         SB ADMIN
+    ====================================================== -->
+
+    <script
+        src="js/sb-admin-2.min.js">
+    </script>
+
+
+    <!-- =====================================================
+         DATATABLE
+    ====================================================== -->
+
+    <script
+        src="vendor/datatables/jquery.dataTables.min.js">
+    </script>
+
+    <script
+        src="vendor/datatables/dataTables.bootstrap4.min.js">
+    </script>
+
+
+    <!-- =====================================================
+         DEMO
+    ====================================================== -->
+
+    <script
+        src="js/demo/datatables-demo.js">
+    </script>
+
+
+    <!-- =====================================================
+         DASHBOARD ADMIN
+    ====================================================== -->
+
+    <script
+        src="js/dashboard_admin.js">
+    </script>
+
+
+    <!-- =====================================================
+         USERNAME ADMIN
+    ====================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                const namaAdmin =
+                    document.getElementById(
+                        "namaAdmin"
+                    );
+
+
+                if (!namaAdmin) {
+
+                    console.error(
+                        "Element #namaAdmin tidak ditemukan."
+                    );
+
+                    return;
+
+                }
+
+
+                const userData =
+                    localStorage.getItem(
+                        "user"
+                    );
+
+
+                if (!userData) {
+
+                    console.warn(
+                        "Data user tidak ditemukan di localStorage."
+                    );
+
+                    namaAdmin.textContent =
+                        "Admin";
+
+                    return;
+
+                }
+
+
+                try {
+
+
+                    const user =
+                        JSON.parse(
+                            userData
+                        );
+
+
+                    console.log(
+                        "Data user login:",
+                        user
+                    );
+
+
+                    if (user.nama_lengkap) {
+
+                        namaAdmin.textContent =
+                            user.nama_lengkap;
+
+                    }
+
+                    else if (user.nama) {
+
+                        namaAdmin.textContent =
+                            user.nama;
+
+                    }
+
+                    else if (user.username) {
+
+                        namaAdmin.textContent =
+                            user.username;
+
+                    }
+
+                    else {
+
+                        namaAdmin.textContent =
+                            "Admin";
+
+                    }
+
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Gagal membaca data user:",
+                        error
+                    );
+
+                    namaAdmin.textContent =
+                        "Admin";
+
+                }
+
+
+            }
+
+        );
+
+    </script>
+
+
+    <!-- =====================================================
+         LOGOUT
+    ====================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                const btnLogout =
+                    document.getElementById(
+                        "btnLogout"
+                    );
+
+
+                if (!btnLogout) {
+
+                    console.error(
+                        "Tombol logout tidak ditemukan."
+                    );
+
+                    return;
+
+                }
+
+
+                btnLogout.addEventListener(
+                    "click",
+                    function (event) {
+
+
+                        event.preventDefault();
+
+
+                        // =============================================
+                        // KONFIRMASI LOGOUT
+                        // =============================================
+
+                        const yakin =
+                            confirm(
+                                "Apakah kamu yakin ingin logout?"
+                            );
+
+
+                        if (!yakin) {
+
+                            return;
+
+                        }
+
+
+                        // =============================================
+                        // HAPUS DATA LOGIN
+                        // =============================================
+
+                        localStorage.removeItem(
+                            "user"
+                        );
+
+                        localStorage.removeItem(
+                            "id_user"
+                        );
+
+                        localStorage.removeItem(
+                            "id_karyawan"
+                        );
+
+                        localStorage.removeItem(
+                            "role"
+                        );
+
+                        localStorage.removeItem(
+                            "nama_lengkap"
+                        );
+
+                        localStorage.removeItem(
+                            "username"
+                        );
+
+
+                        // =============================================
+                        // HAPUS SESSION STORAGE
+                        // =============================================
+
+                        sessionStorage.clear();
+
+
+                        // =============================================
+                        // CEGAH KEMBALI KE DASHBOARD
+                        // =============================================
+
+                        window.history.pushState(
+                            null,
+                            "",
+                            window.location.href
+                        );
+
+
+                        window.onpopstate =
+                            function () {
+
+                                window.history.pushState(
+                                    null,
+                                    "",
+                                    window.location.href
+                                );
+
+                            };
+
+
+                        // =============================================
+                        // ARAHKAN KE LOGIN
+                        // =============================================
+
+                        window.location.replace(
+                            "login.html"
+                        );
+
+
+                    }
+
+                );
+
+
+            }
+
+        );
+
+    </script>
+
+
+    <!-- =====================================================
+         PENGECEKAN LOGIN DAN ROLE ADMIN
+    ====================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                const userData =
+                    localStorage.getItem(
+                        "user"
+                    );
+
+
+                // =============================================
+                // JIKA TIDAK ADA DATA LOGIN
+                // =============================================
+
+                if (!userData) {
+
+                    window.location.replace(
+                        "login.html"
+                    );
+
+                    return;
+
+                }
+
+
+                try {
+
+
+                    const user =
+                        JSON.parse(
+                            userData
+                        );
+
+
+                    // =============================================
+                    // PASTIKAN USER ADMIN
+                    // =============================================
+
+                    if (
+                        user.role &&
+                        user.role !== "admin"
+                    ) {
+
+
+                        localStorage.clear();
+
+                        sessionStorage.clear();
+
+
+                        window.location.replace(
+                            "login.html"
+                        );
+
+
+                        return;
+
+                    }
+
+
+                }
+
+                catch (error) {
+
+
+                    console.error(
+                        "Data login tidak valid."
+                    );
+
+
+                    localStorage.clear();
+
+                    sessionStorage.clear();
+
+
+                    window.location.replace(
+                        "login.html"
+                    );
+
+                }
+
+
+            }
+
+        );
+
+    </script>
+
+    <!-- code untuk koneksi jikalau di deploy -->
+    
+    <script src="js/api-config.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Data Akun Karyawan - Admin Dimsum Hokya</title>
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        href="vendor/fontawesome-free/css/all.min.css"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         BOOTSTRAP 5
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         TABLER ICON
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+
+
+    <!-- =====================================================
+         FONT NUNITO
+    ====================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         SB ADMIN
+    ====================================================== -->
+
+    <link
+        href="css admin/sb-admin-2.min.css"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         CUSTOM CSS
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           BODY
+        ====================================================== */
+
+        body {
+            font-family: "Nunito", sans-serif;
+            background-color: #f8f9fc;
+        }
+
+        /* =====================================================
+        TOMBOL SIDEBAR MOBILE
+        ===================================================== */
+
+        #sidebarToggleTop {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+
+            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+
+            background-color: rgba(255, 255, 255, 0.12) !important;
+
+            color: white !important;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+
+            box-shadow: none !important;
+
+            outline: none !important;
+        }
+
+
+        /* Saat diarahkan mouse */
+        #sidebarToggleTop:hover {
+            background-color: rgba(255, 255, 255, 0.20) !important;
+            color: white !important;
+        }
+
+
+        /* Saat ditekan */
+        #sidebarToggleTop:active {
+            background-color: rgba(255, 255, 255, 0.20) !important;
+            color: white !important;
+        }
+
+
+        /* Saat focus */
+        #sidebarToggleTop:focus {
+            background-color: rgba(255, 255, 255, 0.20) !important;
+            color: white !important;
+
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+
+        /* Setelah selesai ditekan */
+        #sidebarToggleTop:focus-visible {
+            background-color: rgba(255, 255, 255, 0.20) !important;
+            color: white !important;
+
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+
+        /* =====================================================
+        TABLET & HP
+        ===================================================== */
+
+        @media (max-width: 768px) {
+
+            #sidebarToggleTop {
+                display: flex;
+            }
+
+        }
+
+
+        /* =====================================================
+        HP KECIL
+        ===================================================== */
+
+        @media (max-width: 576px) {
+
+            #sidebarToggleTop {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ====================================================== */
+
+        .custom-sidebar {
+
+            border-right: 2px solid white;
+
+            background: linear-gradient(
+                135deg,
+                #8f0000,
+                #d70000
+            );
+        }
+
+
+        /* =====================================================
+           LOGO SIDEBAR
+        ====================================================== */
+
+        .sidebar-brand {
+            min-height: 100px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+
+        .sidebar-brand-icon img {
+
+            width: 75px;
+            height: 75px;
+
+            object-fit: contain;
+
+            margin-top: 10px;
+
+            filter: drop-shadow(
+                0 3px 5px rgba(0, 0, 0, 0.20)
+            );
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ====================================================== */
+
+        .topbar-custom {
+
+            height: 70px;
+
+            background: linear-gradient(
+                135deg,
+                #9F0000,
+                #8f0000
+            ) !important;
+
+            box-shadow:
+                0 2px 10px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        /* =====================================================
+           TOPBAR PROFILE
+        ====================================================== */
+
+        .topbar-profile {
+
+            display: flex;
+
+            align-items: center;
+        }
+
+
+        .topbar-divider-custom {
+
+            width: 1px;
+
+            height: 30px;
+
+            background-color: rgba(
+                255,
+                255,
+                255,
+                0.35
+            );
+
+            margin: 0 15px;
+        }
+
+
+        .img-profile {
+
+            border: 2px solid white;
+
+            box-shadow:
+                0 2px 5px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* =====================================================
+           PAGE TITLE
+        ====================================================== */
+
+        .page-title {
+
+            font-size: 1.6rem;
+
+            font-weight: 700;
+
+            color: #4a4a4a;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================================
+           CARD
+        ====================================================== */
+
+        .card {
+
+            border-radius: 12px;
+
+            border: none;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.07);
+        }
+
+
+        /* =====================================================
+           CARD HEADER
+        ====================================================== */
+
+        .card-header {
+
+            background-color: white;
+
+            border-bottom:
+                1px solid #e3e6f0;
+
+            padding: 20px 25px;
+        }
+
+
+        .card-header-title {
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            color: #111;
+
+            display: flex;
+
+            align-items: center;
+        }
+
+
+        .card-header-title i {
+
+            color: #8f0000;
+
+            margin-right: 10px;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           CARD BODY
+        ====================================================== */
+
+        .card-body {
+
+            padding: 25px;
+        }
+
+
+        /* =====================================================
+           TABLE RESPONSIVE
+        ====================================================== */
+
+        .table-responsive {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+            -webkit-overflow-scrolling: touch;
+
+            border-radius: 8px;
+        }
+
+
+        /* =====================================================
+           TABLE
+        ====================================================== */
+
+        #tableUsers {
+
+            width: 100%;
+
+            min-width: 750px;
+
+            vertical-align: middle;
+
+            margin-bottom: 0;
+        }
+
+
+        #tableUsers thead th {
+
+            white-space: nowrap;
+
+            background-color: #f8f9fa;
+
+            vertical-align: middle;
+
+            text-align: center;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            color: #111;
+
+            padding: 15px 12px;
+
+            border-color: #dee2e6;
+        }
+
+
+        #tableUsers tbody td {
+
+            vertical-align: middle;
+
+            font-size: 15px;
+
+            padding: 15px 16px;
+
+            border-color: #dee2e6;
+        }
+
+
+        #tableUsers tbody tr {
+
+            transition: all 0.2s ease;
+        }
+
+
+        #tableUsers tbody tr:hover {
+
+            background-color: #fff8f8;
+
+            transform: scale(1.001);
+        }
+
+
+        /* =====================================================
+           KOLOM NO
+        ====================================================== */
+
+        #tableUsers th:first-child,
+        #tableUsers td:first-child {
+
+            width: 70px;
+
+            text-align: center;
+        }
+
+
+        /* =====================================================
+           KOLOM NAMA
+        ====================================================== */
+
+        #tableUsers th:nth-child(2) {
+
+            min-width: 220px;
+
+            text-align: left;
+        }
+
+
+        #tableUsers td:nth-child(2) {
+
+            font-weight: 600;
+
+            color: #333;
+        }
+
+
+        /* =====================================================
+           KOLOM USERNAME
+        ====================================================== */
+
+        #tableUsers th:nth-child(3) {
+
+            min-width: 250px;
+
+            text-align: left;
+        }
+
+
+        /* =====================================================
+           KOLOM STATUS
+        ====================================================== */
+
+        #tableUsers th:nth-child(4),
+        #tableUsers td:nth-child(4) {
+
+            text-align: center;
+
+            min-width: 130px;
+        }
+
+
+        /* =====================================================
+           STATUS BADGE
+        ====================================================== */
+
+        #tableUsers .badge {
+
+            padding: 7px 12px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           KOLOM AKSI
+        ====================================================== */
+
+        #tableUsers th:last-child,
+        #tableUsers td:last-child {
+
+            text-align: center;
+
+            min-width: 190px;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           SEMUA BUTTON AKSI
+        ====================================================== */
+
+        #tableUsers .btn {
+
+            border-radius: 6px;
+
+            min-height: 40px;
+
+            transition:
+                all 0.2s ease;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           BUTTON EDIT
+        ====================================================== */
+
+        #tableUsers .btn-edit {
+
+            background-color: #FFB200;
+
+            color: white;
+
+            border: none;
+
+            padding: 9px 14px;
+
+            min-width: 80px;
+        }
+
+
+        #tableUsers .btn-edit:hover {
+
+            background-color: #e5a000;
+
+            color: white;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 4px 8px
+                rgba(255, 178, 0, 0.25);
+        }
+
+
+        /* =====================================================
+           ICON EDIT
+        ====================================================== */
+
+        #tableUsers .btn-edit i {
+
+            margin-right: 6px;
+        }
+
+
+        /* =====================================================
+           JIKA JS HANYA MEMBERIKAN ICON
+           TAMPILKAN TEXT "Edit"
+        ====================================================== */
+
+        #tableUsers .btn-edit:not(:has(i + *))::after {
+
+            content: "Edit";
+        }
+
+
+        /* =====================================================
+           BUTTON DELETE
+        ====================================================== */
+
+        #tableUsers .btn-delete {
+
+            background-color: #CB0404;
+
+            color: white;
+
+            border: none;
+
+            padding: 9px 14px;
+
+            min-width: 85px;
+        }
+
+
+        #tableUsers .btn-delete:hover {
+
+            background-color: #a90000;
+
+            color: white;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 4px 8px
+                rgba(203, 4, 4, 0.25);
+        }
+
+
+        /* =====================================================
+           ICON DELETE
+        ====================================================== */
+
+        #tableUsers .btn-delete i {
+
+            margin-right: 6px;
+        }
+
+
+        /* =====================================================
+           JIKA JS HANYA MEMBERIKAN ICON
+           TAMPILKAN TEXT "Hapus"
+        ====================================================== */
+
+        #tableUsers .btn-delete:not(:has(i + *))::after {
+
+            content: "Hapus";
+        }
+
+
+        /* =====================================================
+           ALERT
+        ====================================================== */
+
+        #alertUsers {
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           MODAL
+        ====================================================== */
+
+        .modal-content {
+
+            border: none;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 40px
+                rgba(0, 0, 0, 0.20);
+        }
+
+
+        .modal-header-custom {
+
+            background: linear-gradient(
+                135deg,
+                #8f0000,
+                #d70000
+            );
+
+            color: white;
+
+            padding: 18px 20px;
+        }
+
+
+        .modal-header-custom .modal-title {
+
+            font-weight: 700;
+        }
+
+
+        .modal-body {
+
+            padding: 25px;
+        }
+
+
+        .modal-footer {
+
+            background-color: #f8f9fa;
+
+            border-top: 1px solid #e3e6f0;
+        }
+
+
+        /* =====================================================
+           FORM
+        ====================================================== */
+
+        #formEditUser .form-label {
+
+            font-weight: 700;
+
+            color: #333;
+        }
+
+
+        #formEditUser .form-control,
+        #formEditUser .form-select {
+
+            border-radius: 7px;
+
+            padding: 10px 12px;
+        }
+
+
+        #formEditUser .form-control:focus,
+        #formEditUser .form-select:focus {
+
+            border-color: #8f0000;
+
+            box-shadow:
+                0 0 0 0.2rem
+                rgba(143, 0, 0, 0.12);
+        }
+
+
+        /* =====================================================
+           BUTTON SIMPAN
+        ====================================================== */
+
+        #btnSimpanUser {
+
+            background-color: #FFB200;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 6px;
+
+            font-weight: 700;
+
+            padding: 9px 16px;
+        }
+
+
+        #btnSimpanUser:hover {
+
+            background-color: #e5a000;
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 768px) {
+
+            .container-fluid {
+
+                padding-left: 15px;
+
+                padding-right: 15px;
+            }
+
+
+            .card-body {
+
+                padding: 15px;
+            }
+
+
+            .page-title {
+
+                font-size: 1.4rem;
+            }
+
+
+            .topbar-logo-text {
+
+                display: none;
+            }
+
+
+            .topbar-logo img {
+
+                width: 42px;
+
+                height: 42px;
+            }
+
+
+            .modal-dialog {
+
+                margin: 10px;
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 576px) {
+
+            .page-title {
+
+                font-size: 1.25rem;
+            }
+
+
+            .card-header {
+
+                padding: 16px;
+            }
+
+
+            .card-body {
+
+                padding: 12px;
+            }
+
+
+            .modal-dialog {
+
+                margin: 5px;
+            }
+
+
+            .modal-body {
+
+                padding: 18px;
+            }
+
+        }
+
+        /* =====================================================
+        FIX SCROLL SIDEBAR (UKURAN UTUH & TETAP RESPANSIF)
+        ====================================================== */
+
+        .custom-sidebar {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            flex-shrink: 0 !important; /* Menjaga agar proporsi & isi sidebar tidak tertekan/gepeng */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Menjaga lebar sidebar tetap utuh di layar mobile */
+        @media (max-width: 768px) {
+            .custom-sidebar {
+                width: 7rem !important; /* Menjaga lebar tetap sama seperti versi asli/desktop */
+            }
+        }
+
+        /* Scrollbar tipis transparan agar tampilan rapi */
+        .custom-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+    </style>
+
+</head>
+
+
+<body id="page-top">
+
+
+<!-- =========================================================
+     WRAPPER
+========================================================== -->
+
+<div id="wrapper">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <ul
+        class="navbar-nav sidebar sidebar-dark accordion custom-sidebar"
+        id="accordionSidebar">
+
+
+        <!-- =================================================
+             LOGO
+        ================================================== -->
+
+        <a
+            class="sidebar-brand d-flex align-items-center justify-content-center"
+            href="#">
+
+            <div class="sidebar-brand-icon">
+
+                <img
+                    src="foto/logo.png"
+                    alt="Logo"
+                    style="
+                        width:70px;
+                        height:70px;
+                        margin-top:20px;
+                    ">
+
+            </div>
+
+        </a>
+
+
+        <hr class="sidebar-divider my-0">
+
+
+        <!-- =================================================
+                DASHBOARD
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="dashboard_admin.html">
+
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                HEADING
+            ================================================== -->
+
+            <div class="sidebar-heading">
+                Data Master
+            </div>
+
+
+            <!-- =================================================
+                DATA ABSENSI
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_absensi_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Presensi</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                TAMBAH TARGET KERJA
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_target_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Target Kerja</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                DATA TARGET KERJA
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_target_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Target Kerja</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 TAMBAH DATA CABANG
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_data_cabang.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Data Cabang</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                DATA CABANG
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_cabang_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Cabang</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                TAMBAH JADWAL
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_jadwal_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Jadwal Kerja</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                DATA JADWAL
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_jadwal_kerja_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Jadwal Kerja</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                 DATA Izin 
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_izin_masuk.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Izin Tidak Masuk</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                TAMBAH DATA KARYAWAN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_data_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Data Karyawan</span>
+
+                </a>
+
+            </li>
+
+            <!-- =================================================
+                DATA KARYAWAN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="data_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Karyawan</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                TAMBAH AKUN
+            ================================================== -->
+
+            <li class="nav-item">
+
+                <a
+                    class="nav-link"
+                    href="tambah_akun_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-calendar-plus"></i>
+
+                    <span>Tambah Akun Karyawan</span>
+
+                </a>
+
+            </li>
+
+
+            <!-- =================================================
+                DATA AKUN
+            ================================================== -->
+
+            <li class="nav-item active">
+
+                <a
+                    class="nav-link"
+                    href="data_akun_karyawan_admin.html">
+
+                    <i class="fas fa-fw fa-table"></i>
+
+                    <span>Data Akun Karyawan</span>
+
+                </a>
+
+            </li>
+
+
+        <hr class="sidebar-divider d-none d-md-block">
+
+    </ul>
+
+
+    <!-- =====================================================
+         CONTENT WRAPPER
+    ====================================================== -->
+
+    <div
+        id="content-wrapper"
+        class="d-flex flex-column">
+
+
+        <div id="content">
+
+            <nav
+                class="navbar navbar-expand navbar-light topbar topbar-custom mb-4 static-top shadow">
+
+                <!-- =================================================
+                     RIGHT SIDE
+                ================================================== -->
+
+                <button
+                    id="sidebarToggleTop"
+                    class="btn"
+                    type="button"
+                    aria-label="Buka menu navigasi">
+
+                    <i class="fas fa-bars"></i>
+
+                </button>
+
+                <ul class="navbar-nav ms-auto">
+
+
+                    <li
+                        class="nav-item dropdown no-arrow">
+
+
+                        <a
+                            class="nav-link dropdown-toggle topbar-profile"
+                            href="#"
+                            id="userDropdown"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+
+
+                            <span
+                                class="me-2 d-none d-lg-inline text-white small"
+                                id="namaAdmin">
+                                Admin
+                            </span>
+
+
+                            <div
+                                class="topbar-divider-custom d-none d-sm-block">
+                            </div>
+
+
+                            <img
+                                class="img-profile rounded-circle"
+                                src="img/undraw_profile.svg"
+                                alt="Profile"
+                                style="
+                                    width:40px;
+                                    height:40px;
+                                ">
+
+
+                        </a>
+
+
+                        <!-- =================================================
+                             DROPDOWN
+                        ================================================== -->
+
+                        <div
+                            class="dropdown-menu dropdown-menu-end shadow">
+
+
+                            <a
+                                class="dropdown-item"
+                                href="#"
+                                id="btnLogout">
+                                <i
+                                    class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400">
+                                </i>
+                                Logout
+                            </a>
+
+
+                        </div>
+
+
+                    </li>
+
+
+                </ul>
+
+
+            </nav>
+
+
+            <!-- =================================================
+                 MAIN CONTENT
+            ================================================== -->
+
+            <div class="container-fluid">
+
+
+                <!-- =================================================
+                     PAGE TITLE
+                ================================================== -->
+
+                <h1
+                    class="h3 page-title">
+
+                    Data Akun Karyawan
+
+                </h1>
+
+
+                <!-- =================================================
+                     CARD
+                ================================================== -->
+
+                <div class="card shadow mb-4">
+
+
+                    <!-- =================================================
+                         CARD HEADER
+                    ================================================== -->
+
+                    <div class="card-header">
+
+
+                        <div
+                            class="card-header-title">
+
+                            <i class="fas fa-users" style="color: black;"></i>
+
+                            <span>
+                                Data Akun Karyawan
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- =================================================
+                         CARD BODY
+                    ================================================== -->
+
+                    <div class="card-body">
+
+
+                        <!-- =================================================
+                             ALERT
+                        ================================================== -->
+
+                        <div
+                            id="alertUsers"
+                            class="alert d-none"
+                            role="alert">
+                        </div>
+
+
+                        <!-- =================================================
+                             TABLE
+                        ================================================== -->
+
+                        <div class="table-responsive">
+
+
+                            <table
+                                class="table table-bordered table-hover"
+                                id="tableUsers"
+                                width="100%">
+
+
+                                <thead>
+
+                                    <tr>
+
+
+                                        <th
+                                            class="text-center">
+
+                                            No
+
+                                        </th>
+
+
+                                        <th>
+
+                                            Nama Karyawan
+
+                                        </th>
+
+
+                                        <th>
+
+                                            Username
+
+                                        </th>
+
+
+                                        <th
+                                            class="text-center">
+
+                                            Status
+
+                                        </th>
+
+
+                                        <th
+                                            class="text-center">
+
+                                            Aksi
+
+                                        </th>
+
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody id="tableUsersBody">
+
+
+                                    <tr>
+
+                                        <td
+                                            colspan="5"
+                                            class="text-center py-4">
+
+                                            <div
+                                                class="spinner-border spinner-border-sm me-2"
+                                                role="status">
+                                            </div>
+
+                                            Memuat data akun...
+
+                                        </td>
+
+                                    </tr>
+
+
+                                </tbody>
+
+
+                            </table>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer
+            class="sticky-footer bg-white">
+
+            <div
+                class="container my-auto">
+
+                <div
+                    class="copyright text-center my-auto">
+
+                    <span>
+
+                        Copyright &copy;
+                        Dimsum Hokya
+                        2026
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     MODAL EDIT AKUN
+========================================================== -->
+
+<div
+    class="modal fade"
+    id="modalEditUser"
+    tabindex="-1"
+    aria-labelledby="modalEditUserLabel"
+    aria-hidden="true">
+
+
+    <div
+        class="modal-dialog modal-dialog-centered">
+
+
+        <div
+            class="modal-content">
+
+
+            <!-- =================================================
+                 MODAL HEADER
+            ================================================== -->
+
+            <div
+                class="modal-header modal-header-custom">
+
+
+                <h5
+                    class="modal-title"
+                    id="modalEditUserLabel">
+
+
+                    <i
+                        class="fas fa-user-edit me-2">
+                    </i>
+
+
+                    Edit Akun Karyawan
+
+
+                </h5>
+
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal"
+                    aria-label="Close">
+                </button>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 FORM EDIT
+            ================================================== -->
+
+            <form
+                id="formEditUser">
+
+
+                <div
+                    class="modal-body">
+
+
+                    <!-- ID USER -->
+
+                    <input
+                        type="hidden"
+                        id="edit_id_user"
+                        name="id_user">
+
+
+                    <!-- NAMA LENGKAP -->
+
+                    <div class="mb-3">
+
+
+                        <label
+                            for="edit_nama_lengkap"
+                            class="form-label">
+
+                            Nama Karyawan
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="edit_nama_lengkap"
+                            name="nama_lengkap"
+                            required>
+
+
+                    </div>
+
+
+                    <!-- USERNAME -->
+
+                    <div class="mb-3">
+
+
+                        <label
+                            for="edit_username"
+                            class="form-label">
+
+                            Username
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="edit_username"
+                            name="username"
+                            required
+                            autocomplete="off">
+
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="mb-3">
+
+
+                        <label
+                            for="edit_password"
+                            class="form-label">
+
+                            Password Baru
+
+                        </label>
+
+
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="edit_password"
+                            name="password"
+                            autocomplete="new-password"
+                            placeholder="Kosongkan jika tidak ingin mengubah">
+
+
+                        <small
+                            class="text-muted">
+
+                            Kosongkan jika password lama tetap digunakan.
+
+                        </small>
+
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="mb-3">
+
+
+                        <label
+                            for="edit_status"
+                            class="form-label">
+
+                            Status Akun
+
+                        </label>
+
+
+                        <select
+                            class="form-select"
+                            id="edit_status"
+                            name="status"
+                            required>
+
+
+                            <option value="aktif">
+                                Aktif
+                            </option>
+
+
+                            <option value="nonaktif">
+                                Nonaktif
+                            </option>
+
+
+                        </select>
+
+
+                    </div>
+
+
+                    <!-- ALERT -->
+
+                    <div
+                        id="editUserAlert"
+                        class="alert d-none">
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     MODAL FOOTER
+                ================================================== -->
+
+                <div
+                    class="modal-footer">
+
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+
+                        <i
+                            class="fas fa-times me-1">
+                        </i>
+
+
+                        Batal
+
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn"
+                        id="btnSimpanUser">
+
+
+                        <i
+                            class="fas fa-save me-1">
+                        </i>
+
+
+                        Simpan Perubahan
+
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<!-- JQUERY -->
+
+<script
+    src="vendor/jquery/jquery.min.js">
+</script>
+
+
+<!-- BOOTSTRAP -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- JQUERY EASING -->
+
+<script
+    src="vendor/jquery-easing/jquery.easing.min.js">
+</script>
+
+
+<!-- SB ADMIN -->
+
+<script
+    src="js/sb-admin-2.min.js">
+</script>
+
+
+<!-- DATA AKUN KARYAWAN -->
+
+<script
+    src="js/data_akun_karyawan_admin.js">
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // =====================================================
+    // TAMPILKAN NAMA AKUN YANG SEDANG LOGIN
+    // =====================================================
+
+    const namaAdmin = document.getElementById("namaAdmin");
+
+    if (!namaAdmin) {
+        console.error("Element #namaAdmin tidak ditemukan.");
+        return;
+    }
+
+
+    // =====================================================
+    // AMBIL DATA USER DARI LOCAL STORAGE
+    // =====================================================
+
+    const userData = localStorage.getItem("user");
+
+
+    if (!userData) {
+
+        console.warn("Data user tidak ditemukan di localStorage.");
+
+        namaAdmin.textContent = "Admin";
+
+        return;
+    }
+
+
+    // =====================================================
+    // PARSE DATA USER
+    // =====================================================
+
+    try {
+
+        const user = JSON.parse(userData);
+
+        console.log("Data user login:", user);
+
+
+        // =================================================
+        // AMBIL NAMA LENGKAP
+        // =================================================
+
+        if (user.nama_lengkap) {
+
+            namaAdmin.textContent =
+                user.nama_lengkap;
+
+        } else if (user.nama) {
+
+            namaAdmin.textContent =
+                user.nama;
+
+        } else if (user.username) {
+
+            namaAdmin.textContent =
+                user.username;
+
+        } else {
+
+            namaAdmin.textContent = "Admin";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Gagal membaca data user:",
+            error
+        );
+
+        namaAdmin.textContent = "Admin";
+
+    }
+
+});
+</script>
+
+<!-- Logout -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const btnLogout = document.getElementById("btnLogout");
+
+        if (!btnLogout) {
+            console.error("Tombol logout tidak ditemukan.");
+            return;
+        }
+
+        btnLogout.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            // Konfirmasi logout
+            const yakin = confirm("Apakah kamu yakin ingin logout?");
+
+            if (!yakin) {
+                return;
+            }
+
+            // =====================================================
+            // HAPUS DATA LOGIN
+            // =====================================================
+
+            localStorage.removeItem("user");
+            localStorage.removeItem("id_user");
+            localStorage.removeItem("id_karyawan");
+            localStorage.removeItem("role");
+            localStorage.removeItem("nama_lengkap");
+            localStorage.removeItem("username");
+
+            // Hapus seluruh session storage
+            sessionStorage.clear();
+
+            // =====================================================
+            // CEGAH KEMBALI KE DASHBOARD DENGAN TOMBOL BACK
+            // =====================================================
+
+            window.history.pushState(null, "", window.location.href);
+
+            window.onpopstate = function () {
+                window.history.pushState(null, "", window.location.href);
+            };
+
+            // =====================================================
+            // ARAHKAN KE HALAMAN LOGIN
+            // =====================================================
+
+            window.location.replace("login.html");
+
+        });
+
+    });
+    </script>
+
+    <!-- Pengecekan Logout -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const userData = localStorage.getItem("user");
+
+        // Jika tidak ada data login,
+        // jangan izinkan membuka dashboard
+        if (!userData) {
+
+            window.location.replace("login.html");
+
+            return;
+        }
+
+        try {
+
+            const user = JSON.parse(userData);
+
+            // Pastikan user adalah admin
+            if (user.role && user.role !== "admin") {
+
+                localStorage.clear();
+                sessionStorage.clear();
+
+                window.location.replace("login.html");
+
+                return;
+            }
+
+        } catch (error) {
+
+            console.error("Data login tidak valid.");
+
+            localStorage.clear();
+            sessionStorage.clear();
+
+            window.location.replace("login.html");
+        }
+
+    });
+    </script>
+
+    <!-- code untuk koneksi jikalau di deploy -->
+    
+    <script src="js/api-config.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Jadwal Kerja</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #e53935, #b30000);
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #b30000;
+        }
+
+        .custom-navbar {
+            background: #b30000;
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-size: 14px;
+            margin: 0 8px;
+            transition: .3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffd54f !important;
+        }
+
+        .dropdown-menu {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .15);
+        }
+
+        .dropdown-item {
+            font-size: 14px;
+            padding: 10px 15px;
+        }
+
+        .dropdown-item:hover {
+            background: #b30000;
+            color: white;
+        }
+
+        .profile-icon {
+            color: white;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .profile-icon:hover {
+            color: #ffd54f;
+        }
+
+        /* Mobile Navbar */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: #b30000;
+                padding: 15px;
+                margin-top: 10px;
+                border-radius: 10px;
+            }
+
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .profile-icon {
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }
+
+        /* ================= CONTENT ================= */
+
+        .jadwal-section {
+            flex: 1;
+            width: 100%;
+            padding: 50px 0 80px;
+        }
+
+        .back-btn {
+            color: white;
+            font-size: 35px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            transition: .3s;
+        }
+
+        .back-btn:hover {
+            color: #ffc107;
+            transform: translateX(-5px);
+        }
+
+        .judul {
+            color: white;
+            font-size: 32px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header-jadwal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-export {
+            background: #ffc107;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .btn-export:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ================= TABLE ================= */
+
+        .table {
+            background: transparent !important;
+            color: white;
+            border-color: rgba(255, 255, 255, .3);
+        }
+
+        .table thead th {
+            background: rgba(255, 255, 255, .15) !important;
+            color: white;
+            font-weight: 600;
+            border-color: rgba(255, 255, 255, .3);
+        }
+
+        .table tbody td {
+            background: rgba(255, 255, 255, .05) !important;
+            color: white;
+            border-color: rgba(255, 255, 255, .2);
+        }
+
+        .table tbody tr:hover td {
+            background: rgba(255, 255, 255, .12) !important;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            width: 100%;
+            margin-top: auto;
+            padding: 15px 10px;
+            background: #F9B818;
+            color: #5c3b00;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.5;
+            border-top: 1px solid #f0c33c;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 991px) {
+            .navbar-nav {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .profile-icon {
+                display: block;
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            .judul {
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .judul {
+                font-size: 22px;
+            }
+
+            .btn-export {
+                width: 100%;
+            }
+
+            .table {
+                font-size: 14px;
+            }
+
+            .about {
+                text-align: center;
+            }
+
+            .jadwal-section {
+                padding-bottom: 40px;
+            }
+
+            footer {
+                padding: 14px 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .judul {
+                font-size: 20px;
+            }
+
+            .table {
+                font-size: 12px;
+            }
+
+            .back-btn {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
+        <div class="container">
+
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="foto/logo.png" alt="Logo" width="35" class="me-2">
+                <span>HokyaAttend</span>
+            </a>
+
+            <!-- Hamburger -->
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard.html">Dashboard</a>
+                    </li>
+
+                    <!-- Dropdown Absensi -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="absensi.html">
+                            Presensi
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="riwayat_absensi.html">
+                            Riwayat Presensi
+                        </a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="jadwal_kerja.html">
+                            Jadwal Kerja
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="pegajuan_izin.html">
+                            Pengajuan Izin
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- Logout: dipertahankan seperti kode awal -->
+                <a href="#" onclick="logout(); return false;" style="color: white; text-decoration: none;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= CONTENT ================= -->
+    <section class="jadwal-section">
+
+        <div class="container">
+
+            <!-- Tombol Kembali -->
+            <a href="jadwal_kerja.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+
+            <!-- Header Jadwal -->
+            <div class="header-jadwal">
+
+                <h2 class="judul" id="judulCabang">
+                    Jadwal Kerja
+                </h2>
+
+                <button class="btn-export" id="btnExportExcel">
+                    <i class="fa-solid fa-file-excel"></i>
+                    Export Excel
+                </button>
+
+            </div>
+
+            <!-- Tabel Jadwal -->
+            <div class="table-responsive mt-4">
+
+                <table class="table table-bordered text-center align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal</th>
+                            <th>Pagi</th>
+                            <th>Malam</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="jadwalBody">
+                        <tr>
+                            <td colspan="4">
+                                Memuat jadwal...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container">
+            <p>Copyright &copy; HokyaAttend 2026</p>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/api-config.js"></script>
+    
+    <script src="js/jadwal_kerja_perjadwal.js"></script>
+
+    <script src="js/logout.js"></script>
+
+    <!-- Export Excel -->
+    <script>
+        document.getElementById("btnExportExcel").addEventListener("click", function () {
+
+            const table = document.querySelector(".table");
+
+            if (!table) {
+                alert("Tabel jadwal tidak ditemukan.");
+                return;
+            }
+
+            const judul = document.getElementById("judulCabang");
+
+            let namaCabang = "Jadwal_Kerja";
+
+            if (judul && judul.innerText.trim() !== "") {
+                namaCabang = judul.innerText.trim()
+                    .replace(/Jadwal Cabang/gi, "")
+                    .replace(/Jadwal Kerja/gi, "")
+                    .trim();
+            }
+
+            const tableClone = table.cloneNode(true);
+
+            const rows = tableClone.querySelectorAll("tbody tr");
+
+            rows.forEach(function (row) {
+                const text = row.innerText.trim();
+
+                if (text.includes("Memuat jadwal")) {
+                    row.remove();
+                }
+            });
+
+            const html = `
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                </head>
+                <body>
+                    <h2>Jadwal Kerja ${namaCabang}</h2>
+                    ${tableClone.outerHTML}
+                </body>
+                </html>
+            `;
+
+            const blob = new Blob(
+                ["\ufeff" + html],
+                {
+                    type: "application/vnd.ms-excel"
+                }
+            );
+
+            const namaFile = "Jadwal_" +
+                namaCabang.replace(/\s+/g, "_") +
+                ".xls";
+
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = namaFile;
+
+            document.body.appendChild(link);
+            link.click();
+
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+
+</body>
+</html>
